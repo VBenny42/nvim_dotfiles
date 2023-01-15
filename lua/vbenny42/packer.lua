@@ -12,6 +12,10 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make', cond = vim.fn.executable 'make' == 1
+    }
 
     use({
         'arcticicestudio/nord-vim',
@@ -26,11 +30,32 @@ return require('packer').startup(function(use)
         config = function() require("nvim-autopairs").setup {} end
     }
 
+    use {
+        'numToStr/Comment.nvim',
+        config = function() require('Comment').setup() end
+    }
+
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'} )
     use('ThePrimeagen/harpoon')
     use('mbbill/undotree')
+
     use('tpope/vim-fugitive')
-    use('tpope/vim-commentary')
+    use('tpope/vim-rhubarb')
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function() require('gitsigns').setup {
+            signs = {
+                add = { text = '+' },
+                change = { text = '~' },
+                delete = { text = '_' },
+                topdelete = { text = '‾' },
+                changedelete = { text = '~' },
+            },
+        }
+        end
+    }
+    -- use('tpope/vim-commentary')
+
     use('tpope/vim-surround')
     use('easymotion/vim-easymotion')
     use('bkad/CamelCaseMotion')
@@ -59,3 +84,11 @@ return require('packer').startup(function(use)
         }
     }
 end)
+
+-- -- Automatically source and re-compile packer whenever you save this init.lua
+-- local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+-- vim.api.nvim_create_autocmd('BufWritePost', {
+--   command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+--   group = packer_group,
+--   pattern = "packer.lua"
+-- })
