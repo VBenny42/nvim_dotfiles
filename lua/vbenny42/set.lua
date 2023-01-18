@@ -28,5 +28,5 @@ vim.opt.updatetime = 50
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
 
