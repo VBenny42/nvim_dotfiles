@@ -8,10 +8,10 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
+        'nvim-telescope/telescope.nvim', branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
+    use('kyazdani42/nvim-web-devicons')
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make', cond = vim.fn.executable 'make' == 1
@@ -27,11 +27,25 @@ return require('packer').startup(function(use)
             vim.cmd('colorscheme nord')
         end
     })
+    -- use({
+    --     'shaunsingh/nord.nvim',
+    --     config = function()
+    --         require('nord').set()
+    --     end
+    -- })
 
     use {
-        "windwp/nvim-autopairs",
+        'windwp/nvim-autopairs',
         config = function() require("nvim-autopairs").setup {} end
     }
+
+    -- use {
+    --     'nvim-tree/nvim-tree.lua',
+    --     requires = {
+    --         'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    --     },
+    --     tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    -- }
 
     use {
         'numToStr/Comment.nvim',
@@ -48,32 +62,87 @@ return require('packer').startup(function(use)
     -- }
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    use('nvim-treesitter/nvim-treesitter-textobjects')
+    use('nvim-treesitter/playground')
+    use {
+        'romgrk/nvim-treesitter-context',
+        config = function() require('treesitter-context').setup { enable = true } end
+    }
+
+    -- use {
+    --     'zbirenbaum/copilot.lua',
+    --     cmd = 'Copilot',
+    --     event = 'InsertEnter',
+    --     config = function() require('copilot').setup({
+    --         suggestion = { enabled = false },
+    --         panel = { enabled = false },
+    --     }) end
+    -- }
+    -- use {
+    --     "zbirenbaum/copilot-cmp",
+    --     after = { "copilot.lua" },
+    --     config = function() require("copilot_cmp").setup() end
+    -- }
+    use('onsails/lspkind.nvim')
+
+    use('github/copilot.vim')
     use('ThePrimeagen/harpoon')
     use('mbbill/undotree')
+    use('danymat/neogen')
 
     use('tpope/vim-fugitive')
+    use('tpope/vim-repeat')
+    use('tpope/vim-unimpaired')
+    use('tpope/vim-abolish')
     use('tpope/vim-rhubarb')
+    use('tpope/vim-dispatch')
+    use('tpope/vim-surround')
+
     use {
         'lewis6991/gitsigns.nvim',
-        config = function() require('gitsigns').setup {
+        config = function()
+            require('gitsigns').setup {
                 signs = {
-                    add = { text = '+' },
-                    change = { text = '~' },
-                    delete = { text = '_' },
-                    topdelete = { text = '‾' },
+                    add          = { text = '│' },
+                    change       = { text = '│' },
+                    delete       = { text = '_' },
+                    topdelete    = { text = '‾' },
                     changedelete = { text = '~' },
-                },
+                    untracked    = { text = '┃' },
+                }
             }
         end
     }
-    -- use('tpope/vim-commentary')
+    use {
+        'luukvbaal/statuscol.nvim',
+        config = function() require('statuscol').setup() end
+    }
 
-    use('tpope/vim-surround')
+    use('lervag/vimtex')
+
+    use { 'smjonas/live-command.nvim', config = function()
+        require("live-command").setup {
+            commands = {
+                S = { cmd = "Subvert" }, -- must be defined before we import vim-abolish
+            },
+        }
+    end }
+
     use('easymotion/vim-easymotion')
     use('bkad/CamelCaseMotion')
     use('junegunn/vim-easy-align')
+
     use('itchyny/lightline.vim')
-    use('andweeb/presence.nvim')
+    use('ryanoasis/vim-devicons')
+    -- use {
+    --     'nvim-lualine/lualine.nvim',
+    --     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    -- }
+
+    use {
+        'andweeb/presence.nvim',
+        config = function() require('presence').setup() end
+    }
     use {
         'VonHeikemen/lsp-zero.nvim',
         requires = {

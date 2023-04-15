@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocaleader = " "
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -30,3 +31,6 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = true
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 10
