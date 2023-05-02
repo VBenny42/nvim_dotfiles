@@ -52,15 +52,6 @@ return require('packer').startup(function(use)
         config = function() require('Comment').setup() end
     }
 
-    -- use {
-    --     'lukas-reineke/indent-blankline.nvim',
-    --     config = function() require('indent_blankline').setup {
-    --             char = '┊',
-    --             show_trailing_blankline_indent = false,
-    --         }
-    --     end
-    -- }
-
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/nvim-treesitter-textobjects')
     use('nvim-treesitter/playground')
@@ -89,6 +80,7 @@ return require('packer').startup(function(use)
     use('ThePrimeagen/harpoon')
     use('mbbill/undotree')
     use('danymat/neogen')
+    use('rust-lang/rust.vim')
 
     use('tpope/vim-fugitive')
     use('tpope/vim-repeat')
@@ -121,9 +113,9 @@ return require('packer').startup(function(use)
     use('lervag/vimtex')
 
     use { 'smjonas/live-command.nvim', config = function()
-        require("live-command").setup {
+        require('live-command').setup {
             commands = {
-                S = { cmd = "Subvert" }, -- must be defined before we import vim-abolish
+                S = { cmd = 'Subvert' }, -- must be defined before we import vim-abolish
             },
         }
     end }
@@ -138,6 +130,13 @@ return require('packer').startup(function(use)
     --     'nvim-lualine/lualine.nvim',
     --     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     -- }
+
+    use('voldikss/vim-floaterm')
+
+    use {
+      'stevearc/aerial.nvim',
+      config = function() require('aerial').setup() end
+    }
 
     use {
         'andweeb/presence.nvim',

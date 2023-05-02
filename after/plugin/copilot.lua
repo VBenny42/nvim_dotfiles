@@ -32,5 +32,6 @@ vim.g.copilot_filetypes = {
     ["sh"] = true,
     ["zsh"] = true,
     ["make"] = true,
-    ["dockerfile"] = true
+    ["dockerfile"] = true,
+    ["toml"] = true
 }

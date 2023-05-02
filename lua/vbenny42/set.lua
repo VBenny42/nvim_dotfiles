@@ -34,3 +34,5 @@ vim.opt.wrap = true
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 10
+
+vim.g.rustfmt_autosave = 1
