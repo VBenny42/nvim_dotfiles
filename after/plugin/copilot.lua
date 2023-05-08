@@ -22,7 +22,6 @@ vim.keymap.set("i", "<M-=>", SuggestOneWord, { silent = true, expr = true, desc 
 
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_filetypes = {
-    ["*"] = false,
     ["javascript"] = true,
     ["typescript"] = true,
     ["c"] = true,
@@ -33,5 +32,7 @@ vim.g.copilot_filetypes = {
     ["zsh"] = true,
     ["make"] = true,
     ["dockerfile"] = true,
-    ["toml"] = true
+    ["toml"] = true,
+    ["yaml"] = true,
+    ["*"] = true,
 }

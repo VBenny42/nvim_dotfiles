@@ -39,13 +39,20 @@ return require('packer').startup(function(use)
         config = function() require("nvim-autopairs").setup {} end
     }
 
-    -- use {
-    --     'nvim-tree/nvim-tree.lua',
-    --     requires = {
-    --         'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    --     },
-    --     tag = 'nightly' -- optional, updated every week. (see issue #1193)
-    -- }
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function() require("todo-comments").setup() end
+    }
+
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+        },
+        tag = 'nightly', -- optional, updated every week. (see issue #1193)
+        config = function() require('nvim-tree').setup() end
+    }
 
     use {
         'numToStr/Comment.nvim',
@@ -54,6 +61,7 @@ return require('packer').startup(function(use)
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/nvim-treesitter-textobjects')
+    use('RRethy/nvim-treesitter-textsubjects')
     use('nvim-treesitter/playground')
     use {
         'romgrk/nvim-treesitter-context',
@@ -88,7 +96,14 @@ return require('packer').startup(function(use)
     use('tpope/vim-abolish')
     use('tpope/vim-rhubarb')
     use('tpope/vim-dispatch')
-    use('tpope/vim-surround')
+
+    use {
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup()
+        end
+    }
 
     use {
         'lewis6991/gitsigns.nvim',
@@ -101,7 +116,29 @@ return require('packer').startup(function(use)
                     topdelete    = { text = '‾' },
                     changedelete = { text = '~' },
                     untracked    = { text = '┃' },
-                }
+                },
+                on_attach = function(bufnr)
+                    local gs = package.loaded.gitsigns
+
+                    local function map(mode, l, r, opts)
+                        opts = opts or {}
+                        opts.buffer = bufnr
+                        vim.keymap.set(mode, l, r, opts)
+                    end
+
+                    -- Navigation
+                    map('n', ']g', function()
+                        if vim.wo.diff then return ']g' end
+                        vim.schedule(function() gs.next_hunk() end)
+                        return '<Ignore>'
+                    end, { expr = true })
+
+                    map('n', '[g', function()
+                        if vim.wo.diff then return '[g' end
+                        vim.schedule(function() gs.prev_hunk() end)
+                        return '<Ignore>'
+                    end, { expr = true })
+                end
             }
         end
     }
@@ -121,7 +158,11 @@ return require('packer').startup(function(use)
     end }
 
     use('easymotion/vim-easymotion')
-    use('bkad/CamelCaseMotion')
+    use {
+        'phaazon/hop.nvim',
+        branch = 'v2',
+        config = function() require('hop').setup() end
+    }
     use('junegunn/vim-easy-align')
 
     use('itchyny/lightline.vim')
@@ -134,8 +175,8 @@ return require('packer').startup(function(use)
     use('voldikss/vim-floaterm')
 
     use {
-      'stevearc/aerial.nvim',
-      config = function() require('aerial').setup() end
+        'stevearc/aerial.nvim',
+        config = function() require('aerial').setup() end
     }
 
     use {
