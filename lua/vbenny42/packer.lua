@@ -20,6 +20,17 @@ return require('packer').startup(function(use)
         'benfowler/telescope-luasnip.nvim'
     }
 
+    use {
+        "nvim-telescope/telescope-file-browser.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    }
+
+    use {
+        "startup-nvim/startup.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+        config = function() require("startup").setup({ theme = "vbenny" }) end
+    }
+
     use({
         'arcticicestudio/nord-vim',
         as = 'nord',
@@ -50,8 +61,7 @@ return require('packer').startup(function(use)
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
-        tag = 'nightly', -- optional, updated every week. (see issue #1193)
-        config = function() require('nvim-tree').setup() end
+        tag = 'nightly',                   -- optional, updated every week. (see issue #1193)
     }
 
     use {
