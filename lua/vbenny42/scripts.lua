@@ -36,4 +36,4 @@ function deleteOtherBuffers()
 end
 
 vim.keymap.set("n", "<leader>db", deleteOtherBuffers,
-{ noremap = true, silent = true, desc = "[d]elete other [b]uffers" })
+  { noremap = true, silent = true, desc = "[d]elete other [b]uffers" })

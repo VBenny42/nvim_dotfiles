@@ -1,5 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -21,14 +19,14 @@ return require('packer').startup(function(use)
   }
 
   use {
-    "nvim-telescope/telescope-file-browser.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    'nvim-telescope/telescope-file-browser.nvim',
+    requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' }
   }
 
   use {
-    "startup-nvim/startup.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    config = function() require("startup").setup({ theme = "vbenny" }) end
+    'startup-nvim/startup.nvim',
+    requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+    config = function() require('startup').setup({ theme = 'vbenny' }) end
   }
 
   use { 'Vonr/align.nvim' }
@@ -40,22 +38,16 @@ return require('packer').startup(function(use)
       vim.cmd('colorscheme nord')
     end
   })
-  -- use({
-  --     'shaunsingh/nord.nvim',
-  --     config = function()
-  --         require('nord').set()
-  --     end
-  -- })
 
   use {
     'windwp/nvim-autopairs',
-    config = function() require("nvim-autopairs").setup {} end
+    config = function() require('nvim-autopairs').setup {} end
   }
 
   use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function() require("todo-comments").setup() end
+    'folke/todo-comments.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function() require('todo-comments').setup() end
   }
 
   use {
@@ -88,20 +80,6 @@ return require('packer').startup(function(use)
     config = function() require('treesitter-context').setup { enable = true } end
   }
 
-  -- use {
-  --     'zbirenbaum/copilot.lua',
-  --     cmd = 'Copilot',
-  --     event = 'InsertEnter',
-  --     config = function() require('copilot').setup({
-  --         suggestion = { enabled = false },
-  --         panel = { enabled = false },
-  --     }) end
-  -- }
-  -- use {
-  --     "zbirenbaum/copilot-cmp",
-  --     after = { "copilot.lua" },
-  --     config = function() require("copilot_cmp").setup() end
-  -- }
   use('onsails/lspkind.nvim')
 
   use('github/copilot.vim')
@@ -171,8 +149,6 @@ return require('packer').startup(function(use)
     config = function() require('statuscol').setup() end
   }
 
-  -- use('lervag/vimtex')
-
   use { 'smjonas/live-command.nvim', config = function()
     require('live-command').setup {
       commands = {
@@ -190,16 +166,8 @@ return require('packer').startup(function(use)
   use('junegunn/vim-easy-align')
 
   use('itchyny/lightline.vim')
-  -- use {
-  --   'nvim-lualine/lualine.nvim',
-  --   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-  -- }
 
   use('ryanoasis/vim-devicons')
-  -- use {
-  --     'nvim-lualine/lualine.nvim',
-  --     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  -- }
 
   use('voldikss/vim-floaterm')
 
@@ -207,6 +175,16 @@ return require('packer').startup(function(use)
     'stevearc/aerial.nvim',
     config = function() require('aerial').setup() end
   }
+
+  use({
+    "piersolenski/wtf.nvim",
+    config = function()
+      require("wtf").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+    }
+  })
 
   use {
     'andweeb/presence.nvim',
@@ -235,11 +213,3 @@ return require('packer').startup(function(use)
     }
   }
 end)
-
--- -- Automatically source and re-compile packer whenever you save this init.lua
--- local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
--- vim.api.nvim_create_autocmd('BufWritePost', {
---   command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
---   group = packer_group,
---   pattern = "packer.lua"
--- })
