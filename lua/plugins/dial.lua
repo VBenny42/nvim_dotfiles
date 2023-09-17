@@ -71,7 +71,7 @@ return {
         augend.constant.alias.bool,
         augend.constant.new {
           elements = { "and", "or" },
-          word = true, -- if false, "sand" is incremented into "sor", "doctor" into "doctand", etc.
+          word = true,   -- if false, "sand" is incremented into "sor", "doctor" into "doctand", etc.
           cyclic = true, -- "or" is incremented into "and".
         },
         augend.constant.new {
@@ -79,6 +79,11 @@ return {
           word = false,
           cyclic = true,
         },
+        augend.constant.new {
+          elements = { "True", "False" },
+          word = true,   -- if false, "sand" is incremented into "sor", "doctor" into "doctand", etc.
+          cyclic = true, -- "or" is incremented into "and".
+        }
       }
     }
   end

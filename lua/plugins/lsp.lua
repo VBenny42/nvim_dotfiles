@@ -20,11 +20,27 @@ return {
     -- Snippet Collection (Optional)
     { 'rafamadriz/friendly-snippets' },
   },
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     local lsp = require('lsp-zero')
     local lspkind = require('lspkind')
 
     lsp.preset('recommended')
+
+    for name, icon in pairs({
+      Error = "",
+      Warn = "",
+      Hint = "",
+      Info = "",
+      Other = "",
+    }) do
+      name = "DiagnosticSign" .. name
+      vim.fn.sign_define(name, {
+        text = icon,
+        texthl = name,
+        numhl = "",
+      })
+    end
 
     -- Fix Undefined global 'vim'
     lsp.configure('lua_ls', {
@@ -119,7 +135,7 @@ return {
     lsp.setup_nvim_cmp({
       mapping = cmp_mappings,
       formatting = {
-        format = lspkind.cmp_format({ with_text = true, maxwidth = 50 })
+        format = lspkind.cmp_format({ mode = 'symbol', with_text = true, maxwidth = 50 })
       }
     })
 
@@ -130,6 +146,9 @@ return {
       },
       mapping = {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      },
+      formatting = {
+        format = lspkind.cmp_format({ mode = 'symbol_text', with_text = true, maxwidth = 50 })
       }
     })
   end
