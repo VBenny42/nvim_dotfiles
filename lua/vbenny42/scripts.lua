@@ -37,3 +37,10 @@ end
 
 vim.keymap.set("n", "<leader>db", deleteOtherBuffers,
   { noremap = true, silent = true, desc = "[d]elete other [b]uffers" })
+
+local yankGroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+    command = "silent! lua vim.highlight.on_yank({ timeout = 300 })",
+    group = yankGroup,
+})
+

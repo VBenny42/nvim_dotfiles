@@ -1,4 +1,7 @@
-vim.cmd [[
+return {
+  'L3MON4D3/LuaSnip',
+  config = function()
+    vim.cmd [[
     " Expand
     imap <silent><expr> <Tab> luasnip#expandable() ? '<Plug>luasnip-expand-snippet' : '<Tab>'
     " Jump forward
@@ -12,7 +15,11 @@ vim.cmd [[
     smap <silent><expr> <C-f> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-f>'
 ]]
 
-require("luasnip").config.set_config({ -- Setting LuaSnip config
-    -- Enable autotriggered snippets
-    enable_autosnippets = true,
-})
+    require("luasnip").config.set_config({ -- Setting LuaSnip config
+      -- Enable autotriggered snippets
+      enable_autosnippets = true,
+    })
+
+    require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/LuaSnip/" })
+  end
+}

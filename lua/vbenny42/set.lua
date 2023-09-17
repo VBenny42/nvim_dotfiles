@@ -28,7 +28,6 @@ vim.opt.updatetime = 50
 
 -- vim.opt.colorcolumn = "80"
 
--- Figure out how to make this work
 vim.g.netrw_liststyle = 3
 
 vim.opt.smartindent = true
