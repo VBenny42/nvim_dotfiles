@@ -13,7 +13,7 @@ return {
 
   {
     'numToStr/Comment.nvim',
-    lazy = false,
+    event = { 'BufReadPre', 'BufNewFile' },
     config = true
   },
 
@@ -59,7 +59,11 @@ return {
   {
     'stevearc/aerial.nvim',
     lazy = true,
-    config = true
+    cmd = { 'AerialOpen', 'AerialClose' },
+    config = function ()
+      pcall(require('telescope').load_extension, 'aerial')
+      require('aerial').setup()
+    end,
   },
 
   {
