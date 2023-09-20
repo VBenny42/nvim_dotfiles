@@ -7,6 +7,7 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     keys = { { "<leader>pv", vim.cmd.NvimTreeToggle, desc = "Open nvim-tree" } },
+    cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeRefresh", "NvimTreeFindFile" },
     opts = {
       disable_netrw = false,
       renderer = {
