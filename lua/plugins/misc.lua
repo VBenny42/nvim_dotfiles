@@ -70,5 +70,10 @@ return {
     'andweeb/presence.nvim',
     lazy = true,
     config = true,
+  },
+
+  {
+    'lervag/vimtex',
+    ft = 'tex',
   }
 }
