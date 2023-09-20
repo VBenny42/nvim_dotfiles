@@ -1,6 +1,9 @@
 return {
   'L3MON4D3/LuaSnip',
   event = "InsertEnter",
+  keys = {
+    { '<leader>ls', function() require('telescope').extensions.luasnip.luasnip() end, desc = '[L]ua[S]nippets' }
+  },
   config = function()
     vim.cmd [[
     " Expand
