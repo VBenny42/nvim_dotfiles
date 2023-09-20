@@ -2,12 +2,24 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
-    lazy = false,
+    lazy = true,
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
     keys = { { "<leader>pv", vim.cmd.NvimTreeToggle, desc = "Open nvim-tree" } },
-    config = function()
+    opts = {
+      disable_netrw = false,
+      renderer = {
+        indent_markers = {
+          enable = true,
+        },
+        icons = {
+          git_placement = "signcolumn",
+        },
+      },
+      update_focused_file = { enable = true }
+    },
+    config = function(_, opts)
       local function natural_cmp(left, right)
         left = left.name:lower()
         right = right.name:lower()
@@ -33,26 +45,15 @@ return {
         end
       end
 
-      require("nvim-tree").setup({
-        disable_netrw = false,
-        sort_by = function(nodes)
-          table.sort(nodes, natural_cmp)
-        end,
-        renderer = {
-          indent_markers = {
-            enable = true,
-          },
-          icons = {
-            git_placement = "signcolumn",
-          },
-        },
-        update_focused_file = { enable = true }
-      })
+      require("nvim-tree").setup(vim.tbl_deep_extend("keep", opts,
+        { sort_by = function(nodes) table.sort(nodes, natural_cmp) end }))
+
+      require("lsp-file-operations").setup()
     end,
   },
   {
     'antosha417/nvim-lsp-file-operations',
-    event = 'VeryLazy',
+    lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-tree.lua",
