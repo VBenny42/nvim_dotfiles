@@ -3,6 +3,18 @@ vim.cmd("let maplocalleader = ','")
 vim.cmd [[
     let g:vimtex_quickfix_open_on_warning = 0
 
+    let g:vimtex_view_method = 'skim'
+
+    " function! s:TexFocusVim() abort
+    "   silent execute "!open -a iTerm"
+    "   redraw!
+    " endfunction
+    "
+    " augroup vimtex_event_focus
+    "   au!
+    "   au User VimtexEventViewReverse call s:TexFocusVim()
+    " augroup END
+
     let g:vimtex_quickfix_ignore_filters = [
         \ 'Underfull \\hbox',
         \ 'Overfull \\hbox',
@@ -25,5 +37,7 @@ vim.keymap.set({ "x", "o" }, "ac", "<Plug>(vimtex-ac)")
 vim.keymap.set({ "x", "o" }, "id", "<Plug>(vimtex-id)")
 vim.keymap.set({ "x", "o" }, "ae", "<Plug>(vimtex-ae)")
 
+vim.keymap.set("n", "<localleader>v", "<Plug>(vimtex-view)", { silent = true, desc = "View PDF" })
 vim.keymap.set("n", "<localleader>li", "<Plug>(vimtex-info)")
 vim.keymap.set("n", "<localleader>ll", "<Plug>(vimtex-compile)")
+vim.keymap.set("n", "<M-0>", "<Plug>(vimtex-compile)")

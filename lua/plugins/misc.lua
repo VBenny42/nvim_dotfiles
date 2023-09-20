@@ -51,16 +51,19 @@ return {
 
   {
     'smjonas/live-command.nvim',
-    enabled = false,
+    enabled = true,
     opts = { commands = { S = { cmd = 'Subvert' } } },
     dependencies = { 'tpope/vim-repeat' },
+    config = function(_, opts)
+      require('live-command').setup(opts)
+    end
   },
 
   {
     'stevearc/aerial.nvim',
     lazy = true,
     cmd = { 'AerialOpen', 'AerialClose' },
-    config = function ()
+    config = function()
       pcall(require('telescope').load_extension, 'aerial')
       require('aerial').setup()
     end,
@@ -68,7 +71,7 @@ return {
 
   {
     'andweeb/presence.nvim',
-    lazy = true,
+    event = 'VeryLazy',
     config = true,
   },
 

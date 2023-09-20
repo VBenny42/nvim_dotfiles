@@ -22,6 +22,7 @@ return {
     require("luasnip").config.set_config({ -- Setting LuaSnip config
       -- Enable autotriggered snippets
       enable_autosnippets = true,
+      store_selection_keys = "<Tab>",
     })
 
     require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/LuaSnip/" })

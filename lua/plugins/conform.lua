@@ -28,6 +28,8 @@ return {
       markdown = { prettier },
       graphql = { prettier },
       python = { "black" },
+      latex = { "latexindent" },
+      tex = { "latexindent" },
       c = { "clang-format" },
       ["_"] = { "trim_whitespace", "trim_newlines" },
     },
