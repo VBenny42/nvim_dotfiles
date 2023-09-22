@@ -2,9 +2,9 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   dependencies = {
+    -- 'nvim-treesitter/nvim-treesitter-textsubjects',
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/nvim-treesitter-refactor',
-    -- 'nvim-treesitter/nvim-treesitter-textsubjects',
     'nvim-treesitter/nvim-treesitter-context',
     'nvim-treesitter/playground',
   },
@@ -69,18 +69,22 @@ return {
           goto_next_start = {
             [']m'] = '@function.outer',
             [']]'] = '@class.outer',
+            [']a'] = '@parameter.inner',
           },
           goto_next_end = {
             [']M'] = '@function.outer',
             [']['] = '@class.outer',
+            [']A'] = '@parameter.inner',
           },
           goto_previous_start = {
             ['[m'] = '@function.outer',
             ['[['] = '@class.outer',
+            ['[a'] = '@parameter.inner',
           },
           goto_previous_end = {
             ['[M'] = '@function.outer',
             ['[]'] = '@class.outer',
+            ['[A'] = '@parameter.inner',
           },
         },
         swap = {
