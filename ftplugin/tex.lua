@@ -15,6 +15,8 @@ vim.cmd [[
     "   au User VimtexEventViewReverse call s:TexFocusVim()
     " augroup END
 
+    " let g:vimtex_fold_enabled = 1
+
     let g:vimtex_quickfix_ignore_filters = [
         \ 'Underfull \\hbox',
         \ 'Overfull \\hbox',
