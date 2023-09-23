@@ -3,8 +3,8 @@ vim.keymap.set("n", "<leader>pV", vim.cmd.Ex, { desc = "Open netrw" })
 
 vim.keymap.set("", "Y", "y$")
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", "<cmd>m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", "<cmd>m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")

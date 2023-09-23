@@ -27,6 +27,8 @@ vim.cmd [[
         \]
 ]]
 
+vim.opt.foldmethod = "manual"
+
 vim.keymap.set("n", "dse", "<Plug>(vimtex-env-delete)")
 vim.keymap.set("n", "dsm", "<Plug>(vimtex-env-delete-math)")
 
