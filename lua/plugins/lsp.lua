@@ -20,7 +20,7 @@ return {
     -- Snippet Collection (Optional)
     { 'rafamadriz/friendly-snippets' },
   },
-  event = { "BufReadPre", "BufNewFile" },
+  event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local lsp = require('lsp-zero')
     local lspkind = require('lspkind')
@@ -28,17 +28,17 @@ return {
     lsp.preset('recommended')
 
     for name, icon in pairs({
-      Error = "",
-      Warn = "",
-      Hint = "",
-      Info = "",
-      Other = "",
+      Error = '',
+      Warn = '',
+      Hint = '',
+      Info = '',
+      Other = '',
     }) do
-      name = "DiagnosticSign" .. name
+      name = 'DiagnosticSign' .. name
       vim.fn.sign_define(name, {
         text = icon,
         texthl = name,
-        numhl = "",
+        numhl = '',
       })
     end
 
@@ -47,17 +47,28 @@ return {
       settings = {
         Lua = {
           diagnostics = {
-            globals = { 'vim' }
+            globals = { 'vim' },
           },
           telemetry = { enable = false },
           workspace = {
             library = {
               [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-              [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-            }
-          }
-        }
-      }
+              [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+            },
+          },
+          format = {
+            enable = true,
+            -- Put format options here
+            -- NOTE: the value should be String!
+            defaultConfig = {
+              indent_style = 'space',
+              indent_size = '2',
+              quote_style = 'single',
+              trailing_table_separator = 'never',
+            },
+          },
+        },
+      },
     })
 
     lsp.ensure_installed({
@@ -128,7 +139,7 @@ return {
       ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
       ['<C-y>'] = cmp.mapping.confirm({ select = true }),
       -- ['CR'] = cmp.mapping.confirm({ select = true }),
-      ["<C-Space>"] = cmp.mapping.complete(),
+      ['<C-Space>'] = cmp.mapping.complete(),
     })
 
     require('luasnip.loaders.from_vscode').lazy_load()
@@ -136,8 +147,8 @@ return {
     lsp.setup_nvim_cmp({
       mapping = cmp_mappings,
       formatting = {
-        format = lspkind.cmp_format({ mode = 'symbol', with_text = true, maxwidth = 50 })
-      }
+        format = lspkind.cmp_format({ mode = 'symbol', with_text = true, maxwidth = 50 }),
+      },
     })
 
     cmp.setup({
@@ -145,14 +156,14 @@ return {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'buffer' },
-        { name = 'path' }
+        { name = 'path' },
       },
       mapping = {
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
       },
       formatting = {
-        format = lspkind.cmp_format({ mode = 'symbol_text', with_text = true, maxwidth = 50 })
-      }
+        format = lspkind.cmp_format({ mode = 'symbol_text', with_text = true, maxwidth = 50 }),
+      },
     })
-  end
+  end,
 }
