@@ -1,18 +1,18 @@
-local prettier = { "prettierd", "prettier" }
+local prettier = { 'prettierd', 'prettier' }
 
 local slow_format_filetypes = {}
 return {
-  "stevearc/conform.nvim",
-  event = { "BufWritePre" },
-  cmd = { "ConformInfo" },
+  'stevearc/conform.nvim',
+  event = { 'BufWritePre' },
+  cmd = { 'ConformInfo' },
   keys = {
     {
-      "<leader>f",
+      '<leader>f',
       function()
-        require("conform").format({ async = true, lsp_fallback = true })
+        require('conform').format({ async = true, lsp_fallback = true })
       end,
-      desc = "Format buffer",
-    },
+      desc = 'Format buffer'
+    }
   },
   opts = {
     formatters_by_ft = {
@@ -27,11 +27,11 @@ return {
       yaml = { prettier },
       markdown = { prettier },
       graphql = { prettier },
-      python = { "black" },
-      latex = { "latexindent" },
-      tex = { "latexindent" },
-      c = { "clang-format" },
-      ["_"] = { "trim_whitespace", "trim_newlines" },
+      python = { 'black' },
+      latex = { 'latexindent' },
+      tex = { 'latexindent' },
+      c = { 'clang-format' },
+      ['_'] = { 'trim_whitespace', 'trim_newlines' }
     },
     log_level = vim.log.levels.DEBUG,
     format_on_save = function(bufnr)
@@ -39,7 +39,7 @@ return {
         return
       end
       local function on_format(err)
-        if err and err:match("timeout$") then
+        if err and err:match('timeout$') then
           slow_format_filetypes[vim.bo[bufnr].filetype] = true
         end
       end
@@ -51,7 +51,7 @@ return {
         return
       end
       return { lsp_fallback = true }
-    end,
+    end
   },
   init = function()
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
@@ -63,6 +63,6 @@ return {
       opts.format_on_save = false
       opts.format_after_save = false
     end
-    require("conform").setup(opts)
-  end,
+    require('conform').setup(opts)
+  end
 }

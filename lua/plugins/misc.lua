@@ -19,7 +19,7 @@ return {
 
   {
     'rust-lang/rust.vim',
-    ft = 'rust',
+    ft = 'rust'
   },
 
   {
@@ -41,20 +41,20 @@ return {
 
   {
     'qpkorr/vim-renamer',
-    cmd = { 'Renamer' },
+    cmd = { 'Renamer' }
   },
 
   {
     'luukvbaal/statuscol.nvim',
     config = function()
-      local builtin = require "statuscol.builtin"
-      require("statuscol").setup {
+      local builtin = require 'statuscol.builtin'
+      require('statuscol').setup {
         relculright = true,
         segments = {
-          { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
-          { text = { "%s" },                  click = "v:lua.ScSa" },
-          { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-        },
+          { text = { builtin.foldfunc },      click = 'v:lua.ScFa' },
+          { text = { '%s' },                  click = 'v:lua.ScSa' },
+          { text = { builtin.lnumfunc, ' ' }, click = 'v:lua.ScLa' }
+        }
       }
     end
   },
@@ -76,17 +76,21 @@ return {
     config = function()
       pcall(require('telescope').load_extension, 'aerial')
       require('aerial').setup()
-    end,
+    end
   },
 
   {
     'andweeb/presence.nvim',
     event = 'VeryLazy',
-    config = true,
+    config = true
   },
 
   {
     'lervag/vimtex',
-    ft = 'tex',
+    ft = 'tex'
+  },
+
+  {
+    'Bekaboo/dropbar.nvim'
   }
 }
