@@ -24,7 +24,7 @@ return {
       '<leader>/',
       function()
         require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
-          previewer = false,
+          previewer = false
         }))
       end,
       desc = '[/] fuzzily search in current buffer]'
@@ -72,7 +72,7 @@ return {
     },
     { '<leader>tr', function() require('telescope.builtin').resume() end,          desc = '[T]elescope [R]esume' },
     { '<leader>km', function() require('telescope.builtin').keymaps() end,         desc = 'Telescope [K]ey[M]aps' },
-    { '<leader>ch', function() require('telescope.builtin').command_history() end, desc = 'Telescope [C]ommand [H]istory' },
+    { '<leader>ch', function() require('telescope.builtin').command_history() end, desc = 'Telescope [C]ommand [H]istory' }
   },
   config = function(_, opts)
     require('telescope').setup(opts)

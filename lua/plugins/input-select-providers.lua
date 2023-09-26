@@ -8,6 +8,7 @@ return {
   {
     'doums/suit.nvim',
     event = 'VeryLazy',
-    config = true
+    config = true,
+    enabled = true
   }
 }
