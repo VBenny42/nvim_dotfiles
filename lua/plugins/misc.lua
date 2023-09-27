@@ -49,6 +49,7 @@ return {
   { 'tpope/vim-abolish' },
   { 'tpope/vim-rhubarb' },
   { 'tpope/vim-dispatch' },
+  { 'tpope/vim-sleuth' },
 
   {
     'qpkorr/vim-renamer',
