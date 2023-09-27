@@ -52,5 +52,13 @@ return {
       { '<leader>gc', function() require('tinygit').smartCommit() end, desc = '[G]it [C]ommit' },
       { '<leader>ga', function() require('tinygit').amendNoEdit() end, desc = '[G]it [A]mend' }
     }
+  },
+  {
+    'tpope/vim-fugitive',
+    keys = {
+      { '<leader>gs', vim.cmd.Git,                 desc = 'show [G]it' },
+      { '<leader>gb', '<CMD>silent GBrowse .<CR>', desc = '[G]it [B]rowse ' },
+      { '<leader>gp', '<CMD>G push<CR>',           desc = '[G]it [P]ush' }
+    }
   }
 }
