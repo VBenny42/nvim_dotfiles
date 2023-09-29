@@ -6,10 +6,11 @@ return {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/nvim-treesitter-refactor',
     'nvim-treesitter/nvim-treesitter-context',
-    'nvim-treesitter/playground',
+    'nvim-treesitter/playground'
   },
+  event = 'BufReadPost',
   opts = {
-    ensure_installed = { "c", "lua", "javascript", "typescript", "vim", "vimdoc", "python" },
+    ensure_installed = { 'c', 'lua', 'javascript', 'typescript', 'vim', 'vimdoc', 'python' },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -27,7 +28,7 @@ return {
       -- Using this option may slow down your editor, and you may see some duplicate highlights.
       -- Instead of true it can also be a list of languages
       additional_vim_regex_highlighting = false,
-      disable = { "latex" },
+      disable = { 'latex' }
     },
     indent = { enable = true, disable = { 'python' } },
     incremental_selection = {
@@ -36,8 +37,8 @@ return {
         init_selection = '<c-space>',
         node_incremental = '<c-space>',
         scope_incremental = '<c-s>',
-        node_decremental = '<c-backspace>',
-      },
+        node_decremental = '<c-backspace>'
+      }
     },
     -- textsubjects = {
     --   enable = true,
@@ -59,8 +60,8 @@ return {
           ['af'] = '@function.outer',
           ['if'] = '@function.inner',
           ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
+          ['ic'] = '@class.inner'
+        }
       },
       move = {
         enable = true,
@@ -68,33 +69,33 @@ return {
         goto_next_start = {
           [']m'] = '@function.outer',
           [']]'] = '@class.outer',
-          [']a'] = '@parameter.inner',
+          [']a'] = '@parameter.inner'
         },
         goto_next_end = {
           [']M'] = '@function.outer',
           [']['] = '@class.outer',
-          [']A'] = '@parameter.inner',
+          [']A'] = '@parameter.inner'
         },
         goto_previous_start = {
           ['[m'] = '@function.outer',
           ['[['] = '@class.outer',
-          ['[a'] = '@parameter.inner',
+          ['[a'] = '@parameter.inner'
         },
         goto_previous_end = {
           ['[M'] = '@function.outer',
           ['[]'] = '@class.outer',
-          ['[A'] = '@parameter.inner',
-        },
+          ['[A'] = '@parameter.inner'
+        }
       },
       swap = {
         enable = true,
         swap_next = {
-          ['<leader>a'] = '@parameter.inner',
+          ['<leader>a'] = '@parameter.inner'
         },
         swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
-        },
-      },
+          ['<leader>A'] = '@parameter.inner'
+        }
+      }
     },
     playground = {
       enable = true,
@@ -111,8 +112,8 @@ return {
         unfocus_language = 'F',
         update = 'R',
         goto_node = '<cr>',
-        show_help = '?',
-      },
+        show_help = '?'
+      }
     }
   },
   config = function(_, opts)

@@ -3,12 +3,12 @@ return {
     'stevearc/dressing.nvim',
     event = 'VeryLazy',
     opts = {},
-    enabled = false
+    enabled = true
   },
   {
     'doums/suit.nvim',
     event = 'VeryLazy',
     config = true,
-    enabled = true
+    enabled = false
   }
 }

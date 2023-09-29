@@ -15,7 +15,7 @@ return {
       component_function = {
         gitbranch = 'FugitiveHead',
         filetype = 'MyFiletype'
-      },
+      }
     }
 
     vim.cmd [[

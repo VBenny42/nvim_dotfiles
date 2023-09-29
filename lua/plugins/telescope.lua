@@ -70,9 +70,21 @@ return {
       desc =
       '[S]earch [B]uffers'
     },
-    { '<leader>tr', function() require('telescope.builtin').resume() end,          desc = '[T]elescope [R]esume' },
-    { '<leader>km', function() require('telescope.builtin').keymaps() end,         desc = 'Telescope [K]ey[M]aps' },
-    { '<leader>ch', function() require('telescope.builtin').command_history() end, desc = 'Telescope [C]ommand [H]istory' }
+    { '<leader>tr', function() require('telescope.builtin').resume() end,  desc = '[T]elescope [R]esume' },
+    { '<leader>km', function() require('telescope.builtin').keymaps() end, desc = 'Telescope [K]ey[M]aps' },
+    {
+      '<leader>ch',
+      function() require('telescope.builtin').command_history() end,
+      desc =
+      'Telescope [C]ommand [H]istory'
+    },
+    { 'gr',         function() require('telescope.builtin').lsp_references() end,                desc =
+    '[G]oto [R]eferences' },
+    { '<leader>ds', function() require('telescope.builtin').lsp_document_symbols() end,          desc =
+    '[D]ocument [S]ymbols' },
+    { '<leader>ws', function() require('telescope.builtin').lsp_dynamic_workspace_symbols() end,
+                                                                                                   desc =
+      '[W]orkspace [S]ymbols' }
   },
   config = function(_, opts)
     require('telescope').setup(opts)

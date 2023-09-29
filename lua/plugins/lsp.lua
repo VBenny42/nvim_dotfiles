@@ -18,7 +18,7 @@ return {
     -- Snippets
     { 'L3MON4D3/LuaSnip' },
     -- Snippet Collection (Optional)
-    { 'rafamadriz/friendly-snippets' },
+    { 'rafamadriz/friendly-snippets' }
   },
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
@@ -32,13 +32,13 @@ return {
       Warn = '',
       Hint = '',
       Info = '',
-      Other = '',
+      Other = ''
     }) do
       name = 'DiagnosticSign' .. name
       vim.fn.sign_define(name, {
         text = icon,
         texthl = name,
-        numhl = '',
+        numhl = ''
       })
     end
 
@@ -47,14 +47,14 @@ return {
       settings = {
         Lua = {
           diagnostics = {
-            globals = { 'vim' },
+            globals = { 'vim' }
           },
           telemetry = { enable = false },
           workspace = {
             library = {
               [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-              [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-            },
+              [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+            }
           },
           format = {
             enable = true,
@@ -64,17 +64,17 @@ return {
               indent_style = 'space',
               indent_size = '2',
               quote_style = 'single',
-              trailing_table_separator = 'never',
-            },
-          },
-        },
-      },
+              trailing_table_separator = 'never'
+            }
+          }
+        }
+      }
     })
 
     lsp.ensure_installed({
       'tsserver',
       'eslint',
-      'lua_ls',
+      'lua_ls'
     })
 
     lsp.on_attach(function(_, bufnr)
@@ -96,11 +96,11 @@ return {
       nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
       nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-      nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+      -- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
       nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
       nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-      nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-      nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+      -- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+      -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
       -- See `:help K` for why this keymap
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -129,7 +129,7 @@ return {
     vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
     vim.diagnostic.config({
-      virtual_text = true,
+      virtual_text = true
     })
 
     local cmp = require('cmp')
@@ -139,7 +139,7 @@ return {
       ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
       ['<C-y>'] = cmp.mapping.confirm({ select = true }),
       -- ['CR'] = cmp.mapping.confirm({ select = true }),
-      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-Space>'] = cmp.mapping.complete()
     })
 
     require('luasnip.loaders.from_vscode').lazy_load()
@@ -147,8 +147,8 @@ return {
     lsp.setup_nvim_cmp({
       mapping = cmp_mappings,
       formatting = {
-        format = lspkind.cmp_format({ mode = 'symbol', with_text = true, maxwidth = 50 }),
-      },
+        format = lspkind.cmp_format({ mode = 'symbol', with_text = true, maxwidth = 50 })
+      }
     })
 
     cmp.setup({
@@ -156,14 +156,14 @@ return {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'buffer' },
-        { name = 'path' },
+        { name = 'path' }
       },
       mapping = {
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true })
       },
       formatting = {
-        format = lspkind.cmp_format({ mode = 'symbol_text', with_text = true, maxwidth = 50 }),
-      },
+        format = lspkind.cmp_format({ mode = 'symbol_text', with_text = true, maxwidth = 50 })
+      }
     })
-  end,
+  end
 }
