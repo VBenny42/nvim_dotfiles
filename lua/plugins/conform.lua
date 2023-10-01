@@ -11,8 +11,8 @@ return {
       function()
         require('conform').format({ async = true, lsp_fallback = true })
       end,
-      desc = 'Format buffer'
-    }
+      desc = 'Format buffer',
+    },
   },
   opts = {
     formatters_by_ft = {
@@ -31,7 +31,7 @@ return {
       latex = { 'latexindent' },
       tex = { 'latexindent' },
       c = { 'clang-format' },
-      ['_'] = { 'trim_whitespace', 'trim_newlines' }
+      ['_'] = { 'trim_whitespace', 'trim_newlines' },
     },
     log_level = vim.log.levels.DEBUG,
     format_on_save = function(bufnr)
@@ -51,7 +51,7 @@ return {
         return
       end
       return { lsp_fallback = true }
-    end
+    end,
   },
   init = function()
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
@@ -64,5 +64,5 @@ return {
       opts.format_after_save = false
     end
     require('conform').setup(opts)
-  end
+  end,
 }

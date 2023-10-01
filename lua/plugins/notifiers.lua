@@ -33,6 +33,7 @@ return {
     },
     config = function(_, opts)
       require('notify').setup(opts)
+      pcall(require('telescope').load_extension, 'notify')
       vim.notify = require('notify')
 
       vim.keymap.set('n', '<BS>', function()
