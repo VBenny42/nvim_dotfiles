@@ -1,7 +1,7 @@
 return {
   {
     'folke/noice.nvim',
-    enabled = false,
+    enabled = true,
     event = 'VeryLazy',
     -- add any options here
     opts = {
@@ -9,13 +9,22 @@ return {
         format = {
           search_down = { icon = ' ' },
           search_up = { icon = ' ' }
-        },
-        view = 'cmdline'
+        }
+        -- view = 'cmdline'
       },
       routes = {
         {
           view = 'cmdline',
           filter = { event = 'msg_showmode' }
+        }
+      },
+      notify = {
+        replace = true,
+        merge = true
+      },
+      lsp = {
+        progress = {
+          enabled = false
         }
       }
     },
@@ -27,7 +36,7 @@ return {
   {
     'rcarriga/nvim-notify',
     enabled = true,
-    event = 'BufReadPre',
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       stages = 'slide'
     },

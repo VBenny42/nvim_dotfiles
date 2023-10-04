@@ -1,6 +1,6 @@
 return {
   'itchyny/lightline.vim',
-  dependencies = { 'ryanoasis/vim-devicons' },
+  dependencies = { 'ryanoasis/vim-devicons', 'tpope/vim-fugitive' },
   enabled = true,
   priority = 1000,
   config = function()
