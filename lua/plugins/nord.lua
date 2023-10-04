@@ -15,7 +15,6 @@ return {
     name = 'nord',
     priority = 1000,
     config = function()
-      -- vim.cmd([[colorscheme nord]])
       -- turns off LSP semantic tokens by default
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
