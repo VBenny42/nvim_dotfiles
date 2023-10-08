@@ -3,8 +3,8 @@ vim.keymap.set('n', '<leader>pV', vim.cmd.Ex, { desc = 'Open netrw' })
 
 vim.keymap.set('', 'Y', 'y$')
 
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { silent = true })
 
 vim.keymap.set('n', 'J', 'mzJ`z')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
@@ -42,3 +42,28 @@ vim.keymap.set('n', '<leader>S', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+
+local filetypes = {
+  -- 'TelescopePrompt',
+  'notify'
+  -- 'noice'
+}
+
+local function inTable(tbl, item)
+  for _, value in ipairs(tbl) do
+    if value == item then
+      return true
+    end
+  end
+  return false
+end
+
+vim.keymap.set('n', '<BS>', function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.fn.bufexists(buf) == 1 and inTable(filetypes, vim.api.nvim_get_option_value('filetype', { buf = buf })) then
+      vim.api.nvim_win_close(win, false)
+      -- vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end
+end, { noremap = true, silent = false })

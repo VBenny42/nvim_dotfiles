@@ -1,6 +1,6 @@
 return {
   'MunifTanjim/nougat.nvim',
-  enabled = true,
+  enabled = false,
   config = function()
     require('plugins.nougat.bubbly')
   end

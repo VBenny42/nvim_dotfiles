@@ -34,7 +34,7 @@ return {
       'neovim/nvim-lspconfig',
       'luukvbaal/statuscol.nvim'
     },
-    enabled = false,
+    enabled = true,
     keys = {
       { 'zc' },
       { 'zo' },
