@@ -1,7 +1,7 @@
 return {
   'itchyny/lightline.vim',
   dependencies = { 'ryanoasis/vim-devicons', 'tpope/vim-fugitive' },
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function()
     vim.cmd('let g:lightline#bufferline#enable_devicons = 1')
