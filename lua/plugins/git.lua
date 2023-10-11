@@ -1,6 +1,7 @@
 return {
   {
     'lewis6991/gitsigns.nvim',
+    dependencies = 'luukvbaal/statuscol.nvim',
     opts = {
       signs = {
         add          = { text = '│' },
@@ -42,6 +43,8 @@ return {
           { desc = '[R]eset [H]unk' })
         map('n', '<leader>hS', gs.stage_buffer, { desc = '[S]tage Buffer' })
         map('n', '<leader>hu', gs.undo_stage_hunk, { desc = '[U]ndo [S]tage [H]unk' })
+        map('n', '<leader>hp', gs.preview_hunk, { desc = '[H]unk [P]review' })
+        map('n', '<leader>gq', function() gs.setqflist('all', { open = true }) end, { desc = '[G]it [Q]uickfix' })
       end
     }
   },
