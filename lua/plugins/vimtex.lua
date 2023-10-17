@@ -34,8 +34,8 @@ return {
     vim.keymap.set({ 'x', 'o' }, 'ae', '<Plug>(vimtex-ae)')
 
     vim.keymap.set('n', '<localleader>v', '<Plug>(vimtex-view)', { silent = true, desc = 'View PDF' })
-    vim.keymap.set('n', '<localleader>li', '<Plug>(vimtex-info)')
-    vim.keymap.set('n', '<localleader>ll', '<Plug>(vimtex-compile)')
-    vim.keymap.set('n', '<M-0>', '<Plug>(vimtex-compile)')
+    vim.keymap.set('n', '<localleader>li', '<Plug>(vimtex-info)', { silent = true })
+    vim.keymap.set('n', '<localleader>ll', '<Plug>(vimtex-compile)', { silent = true })
+    vim.keymap.set('n', '<M-0>', '<Plug>(vimtex-compile)', { silent = true })
   end
 }

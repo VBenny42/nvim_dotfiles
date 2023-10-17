@@ -43,6 +43,11 @@ vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
+vim.cmd [[
+nnoremap <silent> <M-[> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%<' . line('.') . 'l\S', 'be')<CR>
+nnoremap <silent> <M-]> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\%>' . line('.') . 'l\S', 'e')<CR>
+]]
+
 local filetypes = {
   -- 'TelescopePrompt',
   'notify'

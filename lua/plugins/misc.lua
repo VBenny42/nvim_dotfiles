@@ -23,6 +23,12 @@ return {
   },
 
   {
+    'folke/twilight.nvim',
+    cmd = { 'Twilight', 'TwilightEnable', 'TwilightDisable' },
+    opts = {}
+  },
+
+  {
     'numToStr/Comment.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     config = true
