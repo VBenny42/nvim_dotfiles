@@ -3,7 +3,7 @@ return {
   enabled = true,
   event = { 'BufReadPre', 'BufNewFile' },
   opts = {
-    stages = 'slide'
+    stages = 'static'
   },
   config = function(_, opts)
     require('notify').setup(opts)

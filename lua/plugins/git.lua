@@ -59,9 +59,10 @@ return {
   {
     'tpope/vim-fugitive',
     keys = {
-      { '<leader>gs', vim.cmd.Git,          desc = 'show [G]it' },
-      { '<leader>gb', '<CMD>GBrowse .<CR>', desc = '[G]it [B]rowse ', silent = true },
-      { '<leader>gp', '<CMD>G push<CR>',    desc = '[G]it [P]ush' }
+      { '<leader>gs', vim.cmd.Git,                      desc = 'show [G]it' },
+      { '<leader>gb', '<CMD>GBrowse .<CR>',             desc = '[G]it [B]rowse ',                      silent = true },
+      { '<leader>gp', '<CMD>G push<CR>',                desc = '[G]it [P]ush' },
+      { '<leader>gS', '<CMD>g/Unstaged/ norm vips<CR>', desc = '[S]tage All [G]it files with changes', silent = true }
     }
   }
 }

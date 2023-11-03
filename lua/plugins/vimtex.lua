@@ -21,6 +21,8 @@ return {
 
     vim.opt.foldmethod = 'manual'
 
+    vim.keymap.set('i', '<S-CR>', '\\\\<CR>', { silent = true })
+
     vim.keymap.set('n', 'dse', '<Plug>(vimtex-env-delete)')
     vim.keymap.set('n', 'dsm', '<Plug>(vimtex-env-delete-math)')
 

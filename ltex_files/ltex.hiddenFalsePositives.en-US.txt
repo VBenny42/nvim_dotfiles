@@ -1,0 +1,6 @@
+{"rule":"ONE_PLURAL","sentence":"^\\QIf the sender discovers 5 consecutive 1 bits in the bitstream from the Network Layer, it stuffs a single 0 bit into the outgoing bit stream.\\E$"}
+{"rule":"ONE_PLURAL","sentence":"^\\QIf the receiver discovers 5 consecutive 1 bits, followed by a single 0 bit in the bit stream from the Physical Layer, it removes (destuffs) the 0 bit.\\E$"}
+{"rule":"ONE_PLURAL","sentence":"^\\QGive the encoding for each one of the following bit sequences, when the sender stuffs after 5 consecutive 1 bits a single 0 bit into the bit stream from the Network Layer.\\E$"}
+{"rule":"A_BIT","sentence":"^\\QThe Data Link Layer protocol HDLC (High-Level Data Link Control) uses Bit Stuffing.\\E$"}
+{"rule":"SCENT_SENT","sentence":"^\\QLet's consider that the sent codeword if “10110101” and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q; calculate the corresponding Hamming distances for the received codeword and idetify which is the most likely transmitted codeword.\\E$"}
+{"rule":"SCENT_SENT","sentence":"^\\QLet's consider that the sent codeword is “\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q” and \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q; calculate the corresponding Hamming distances for the received codeword and identify which is the most likely transmitted codeword.\\E$"}

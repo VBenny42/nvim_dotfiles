@@ -59,7 +59,8 @@ return {
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
             ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner'
+            ['ic'] = '@class.inner',
+            ['aC'] = '@comment.outer'
           }
         },
         move = {
@@ -93,6 +94,15 @@ return {
           },
           swap_previous = {
             ['<leader>A'] = '@parameter.inner'
+          }
+        },
+        lsp_interop = {
+          enable = true,
+          border = 'none',
+          floating_preview_opts = {},
+          peek_definition_code = {
+            ['<leader>df'] = '@function.outer',
+            ['<leader>dF'] = '@class.outer'
           }
         }
       },

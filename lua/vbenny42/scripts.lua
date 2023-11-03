@@ -1,7 +1,7 @@
 vim.api.nvim_create_user_command('Source', 'source $MYVIMRC', {})
 
 local function python_script(args)
-  print("hello")
+  print('hello')
 end
 -- python centering script
 vim.api.nvim_buf_create_user_command(0, 'Center', python_script, {})
@@ -15,7 +15,7 @@ function copyBreakpointInfo()
   local lineNumber = vim.fn.line('.')
 
   -- Format the breakpoint information as "filename:lineNumber"
-  local breakpointInfo = string.format("%s:%d", filename, lineNumber)
+  local breakpointInfo = string.format('%s:%d', filename, lineNumber)
 
   -- Copy the breakpoint information to the system clipboard
   vim.fn.setreg('+', breakpointInfo)
@@ -35,12 +35,11 @@ function deleteOtherBuffers()
   print('Deleted all buffers except current one')
 end
 
-vim.keymap.set("n", "<leader>db", deleteOtherBuffers,
-  { noremap = true, silent = true, desc = "[d]elete other [b]uffers" })
+vim.keymap.set('n', '<leader>db', deleteOtherBuffers,
+  { noremap = true, silent = true, desc = '[d]elete other [b]uffers' })
 
-local yankGroup = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-    command = "silent! lua vim.highlight.on_yank({ timeout = 300 })",
-    group = yankGroup,
+local yankGroup = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  command = 'silent! lua vim.highlight.on_yank({ timeout = 300 })',
+  group = yankGroup
 })
-
