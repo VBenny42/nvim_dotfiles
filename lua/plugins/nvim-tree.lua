@@ -1,24 +1,26 @@
 return {
   {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
+    'nvim-tree/nvim-tree.lua',
+    version = '*',
     lazy = true,
     dependencies = {
-      "nvim-tree/nvim-web-devicons",
+      'nvim-tree/nvim-web-devicons'
     },
-    keys = { { "<leader>pv", vim.cmd.NvimTreeToggle, desc = "Open nvim-tree" } },
-    cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeClose", "NvimTreeRefresh", "NvimTreeFindFile" },
+    keys = { { '<leader>pv', vim.cmd.NvimTreeToggle, desc = 'Open nvim-tree' } },
+    cmd = { 'NvimTreeToggle', 'NvimTreeOpen', 'NvimTreeClose', 'NvimTreeRefresh', 'NvimTreeFindFile' },
     opts = {
       disable_netrw = false,
       renderer = {
         indent_markers = {
-          enable = true,
+          enable = true
         },
         icons = {
-          git_placement = "signcolumn",
-        },
+          git_placement = 'signcolumn'
+        }
       },
-      update_focused_file = { enable = true }
+      update_focused_file = { enable = true, update_root = true },
+      sync_root_with_cwd = true,
+      respect_buf_cwd = true
     },
     config = function(_, opts)
       local function natural_cmp(left, right)
@@ -33,9 +35,9 @@ return {
           local l = string.sub(left, i, -1)
           local r = string.sub(right, i, -1)
 
-          if type(tonumber(string.sub(l, 1, 1))) == "number" and type(tonumber(string.sub(r, 1, 1))) == "number" then
-            local l_number = tonumber(string.match(l, "^[0-9]+"))
-            local r_number = tonumber(string.match(r, "^[0-9]+"))
+          if type(tonumber(string.sub(l, 1, 1))) == 'number' and type(tonumber(string.sub(r, 1, 1))) == 'number' then
+            local l_number = tonumber(string.match(l, '^[0-9]+'))
+            local r_number = tonumber(string.match(r, '^[0-9]+'))
 
             if l_number ~= r_number then
               return l_number < r_number
@@ -46,18 +48,18 @@ return {
         end
       end
 
-      require("nvim-tree").setup(vim.tbl_deep_extend("keep", opts,
+      require('nvim-tree').setup(vim.tbl_deep_extend('keep', opts,
         { sort_by = function(nodes) table.sort(nodes, natural_cmp) end }))
 
-      require("lsp-file-operations").setup()
-    end,
+      require('lsp-file-operations').setup()
+    end
   },
   {
     'antosha417/nvim-lsp-file-operations',
     lazy = true,
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-tree.lua",
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-tree.lua'
     }
   }
 }
