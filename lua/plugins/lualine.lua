@@ -28,7 +28,6 @@ return {
   },
   config = function(_, opts)
     hidden = true
-
     vim.keymap.set('n', '<leader>tt', function()
       if hidden then
         require('lualine').hide({ unhide = true })
@@ -38,6 +37,19 @@ return {
         hidden = true
       end
     end, { desc = '[T]oggle [T]abs View' })
+
+    local toggle = true
+    vim.keymap.set('n', '<leader>ll', function()
+      if toggle then
+        toggle = false
+        opts.sections.lualine_b[3] = { 'aerial', on_click = function() require('aerial').toggle() end }
+      else
+        toggle = true
+        opts.sections.lualine_b[3] = nil
+      end
+      require('lualine').setup(opts)
+      require('lualine').hide({ place = { 'tabline' } })
+    end, { desc = 'Show Aerial in lualine' })
 
     require('lualine').setup(opts)
     require('lualine').hide({ place = { 'tabline' } })

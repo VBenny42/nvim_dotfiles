@@ -1,7 +1,7 @@
 return {
   'rgroli/other.nvim',
   cmd = { 'Other', 'OtherSplit', 'OtherTabNew', 'OtherVSplit' },
-  keys = { { '<leader>o', '<CMD>:Other<CR>', noremap = true, silent = true } },
+  keys = { { '<leader>o', '<CMD>Other<CR>', noremap = true, silent = true } },
   opts = {
     mappings = {
       {
@@ -24,7 +24,5 @@ return {
       }
     }
   },
-  config = function(_, opts)
-    require('other-nvim').setup(opts)
-  end
+  main = 'other-nvim'
 }

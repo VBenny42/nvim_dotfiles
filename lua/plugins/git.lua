@@ -58,6 +58,12 @@ return {
   },
   {
     'tpope/vim-fugitive',
+    cmd = {
+      'Git',
+      'G browse',
+      'G push',
+      'G pull'
+    },
     keys = {
       { '<leader>gs', vim.cmd.Git,                      desc = 'show [G]it' },
       { '<leader>gb', '<CMD>GBrowse .<CR>',             desc = '[G]it [B]rowse ',                      silent = true },

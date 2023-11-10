@@ -31,17 +31,14 @@ return {
   {
     'numToStr/Comment.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
-    config = true
+    opts = {
+      ignore = '^$'
+    }
   },
 
   {
     'rust-lang/rust.vim',
     ft = 'rust'
-  },
-
-  {
-    'mhartington/formatter.nvim',
-    enabled = false
   },
 
   {
@@ -63,18 +60,7 @@ return {
   },
 
   {
-    'smjonas/live-command.nvim',
-    enabled = true,
-    opts = { commands = { S = { cmd = 'Subvert' } } },
-    dependencies = { 'tpope/vim-repeat' },
-    config = function(_, opts)
-      require('live-command').setup(opts)
-    end
-  },
-
-  {
     'stevearc/aerial.nvim',
-    lazy = true,
     cmd = { 'AerialOpen', 'AerialClose' },
     config = function()
       pcall(require('telescope').load_extension, 'aerial')
