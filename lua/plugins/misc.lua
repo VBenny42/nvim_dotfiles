@@ -29,14 +29,6 @@ return {
   },
 
   {
-    'numToStr/Comment.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    opts = {
-      ignore = '^$'
-    }
-  },
-
-  {
     'rust-lang/rust.vim',
     ft = 'rust'
   },
