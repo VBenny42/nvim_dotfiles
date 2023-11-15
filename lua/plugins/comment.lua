@@ -51,23 +51,8 @@ return {
 
     local nrepmap = require('vbenny42.utils').normalRepeatableMap
 
-    --     vim.cmd [[
-    -- function! Lua_functions()
-    --   function! s:commented_lines_lua_function()
-    --     call luaeval('commented_lines_textobject()')
-    --   endfunction
-    -- endfunction
-
-    -- call Lua_functions()
-    -- ]]
-
-    -- vim.keymap.set('x', 'gc', commented_lines_textobject, { noremap = false })
-
-    vim.keymap.set({ 'o', 'x' }, 'gc', '<silent>:<C-U>lua commented_lines_textobject()<cr>',
-      { noremap = false, silent = true, desc = 'Comment Block Textobject' })
-
     nrepmap('vgc', ':<C-U>lua commented_lines_textobject()<cr>')
     nrepmap('dgc', delete_comment_block)
-    -- nrepmap('ygc', yank_comment_block)
+    nrepmap('ygc', yank_comment_block)
   end
 }
