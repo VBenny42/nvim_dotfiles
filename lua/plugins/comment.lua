@@ -1,6 +1,6 @@
 -- Textobject for adjacent commented lines
 -- taken from: https://github.com/numToStr/Comment.nvim/issues/22#issuecomment-1272569139
-local function commented_lines_textobject()
+function commented_lines_textobject()
   local U = require('Comment.utils')
   local cl = vim.api.nvim_win_get_cursor(0)[1] -- current line
   local range = { srow = cl, scol = 0, erow = cl, ecol = 0 }
@@ -44,15 +44,30 @@ return {
   'numToStr/Comment.nvim',
   event = { 'BufReadPre', 'BufNewFile' },
   opts = {
-    ignore = '^$'
+    -- ignore = '^$'
   },
   config = function(_, opts)
     require('Comment').setup(opts)
 
     local nrepmap = require('vbenny42.utils').normalRepeatableMap
 
-    nrepmap('vgc', commented_lines_textobject)
+    --     vim.cmd [[
+    -- function! Lua_functions()
+    --   function! s:commented_lines_lua_function()
+    --     call luaeval('commented_lines_textobject()')
+    --   endfunction
+    -- endfunction
+
+    -- call Lua_functions()
+    -- ]]
+
+    -- vim.keymap.set('x', 'gc', commented_lines_textobject, { noremap = false })
+
+    vim.keymap.set({ 'o', 'x' }, 'gc', '<silent>:<C-U>lua commented_lines_textobject()<cr>',
+      { noremap = false, silent = true, desc = 'Comment Block Textobject' })
+
+    nrepmap('vgc', ':<C-U>lua commented_lines_textobject()<cr>')
     nrepmap('dgc', delete_comment_block)
-    nrepmap('ygc', yank_comment_block)
+    -- nrepmap('ygc', yank_comment_block)
   end
 }
