@@ -14,6 +14,25 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', silent = true })
 
+local function toggle_quickfix()
+  local qf_exists = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win['quickfix'] == 1 then
+      qf_exists = true
+    end
+  end
+  if qf_exists == true then
+    vim.cmd 'cclose'
+    return
+  end
+  if not vim.tbl_isempty(vim.fn.getqflist()) then
+    vim.cmd 'copen'
+  end
+end
+-- vim.keymap.set('n', 'qc', '<cmd>cclose<CR>', { desc = '[C]lose [Q]uickfix' })
+-- vim.keymap.set('n', 'qo', '<cmd>copen<CR>', { desc = '[O]pen [Q]uickfix' })
+vim.keymap.set('n', 'qt', toggle_quickfix, { desc = '[T]oggle [Q]uickfix' })
+
 -- greatest remap ever
 vim.keymap.set('x', '<leader>p', [["+p]], { desc = 'Paste from system clipboard' })
 vim.keymap.set('x', '<leader>P', [["_dP]])
