@@ -2,87 +2,107 @@ return {
   'monaqa/dial.nvim',
   keys = {
     {
-      "<C-a>",
+      '<C-a>',
       function()
-        require("dial.map").manipulate("increment", "normal")
+        require('dial.map').manipulate('increment', 'normal')
       end,
-      mode = "n"
+      mode = 'n'
     },
     {
-      "<C-x>",
+      '<C-x>',
       function()
-        require("dial.map").manipulate("decrement", "normal")
+        require('dial.map').manipulate('decrement', 'normal')
       end,
-      mode = "n"
+      mode = 'n'
     },
     {
-      "g<C-a>",
+      'g<C-a>',
       function()
-        require("dial.map").manipulate("increment", "gnormal")
+        require('dial.map').manipulate('increment', 'gnormal')
       end,
-      mode = "n"
+      mode = 'n'
     },
     {
-      "g<C-x>",
+      'g<C-x>',
       function()
-        require("dial.map").manipulate("decrement", "gnormal")
+        require('dial.map').manipulate('decrement', 'gnormal')
       end,
-      mode = "n"
+      mode = 'n'
     },
     {
-      "<C-a>",
+      '<C-a>',
       function()
-        require("dial.map").manipulate("increment", "visual")
+        require('dial.map').manipulate('increment', 'visual')
       end,
-      mode = "v"
+      mode = 'v'
     },
     {
-      "<C-x>",
+      '<C-x>',
       function()
-        require("dial.map").manipulate("decrement", "visual")
+        require('dial.map').manipulate('decrement', 'visual')
       end,
-      mode = "v"
+      mode = 'v'
     },
     {
-      "g<C-a>",
+      'g<C-a>',
       function()
-        require("dial.map").manipulate("increment", "gvisual")
+        require('dial.map').manipulate('increment', 'gvisual')
       end,
-      mode = "v"
+      mode = 'v'
     },
     {
-      "g<C-x>",
+      'g<C-x>',
       function()
-        require("dial.map").manipulate("decrement", "gvisual")
+        require('dial.map').manipulate('decrement', 'gvisual')
       end,
-      mode = "v"
+      mode = 'v'
     }
   },
   config = function()
-    local augend = require("dial.augend")
-    require("dial.config").augends:register_group {
+    local augend = require('dial.augend')
+    require('dial.config').augends:register_group {
       default = {
         augend.integer.alias.decimal_int,
         augend.integer.alias.hex,
-        augend.date.alias["%Y/%m/%d"],
-        augend.date.alias["%Y-%m-%d"],
-        augend.date.alias["%m/%d"],
-        augend.date.alias["%H:%M"],
+        augend.date.alias['%Y/%m/%d'],
+        augend.date.alias['%Y-%m-%d'],
+        augend.date.alias['%m/%d'],
+        augend.date.alias['%H:%M'],
         augend.constant.alias.bool,
         augend.constant.new {
-          elements = { "and", "or" },
-          word = true,   -- if false, "sand" is incremented into "sor", "doctor" into "doctand", etc.
-          cyclic = true, -- "or" is incremented into "and".
+          elements = { 'and', 'or' },
+          word = true,  -- if false, "sand" is incremented into "sor", "doctor" into "doctand", etc.
+          cyclic = true -- "or" is incremented into "and".
         },
         augend.constant.new {
-          elements = { "&&", "||" },
+          elements = { '&&', '||' },
           word = false,
-          cyclic = true,
+          cyclic = true
         },
         augend.constant.new {
-          elements = { "True", "False" },
-          word = true,   -- if false, "sand" is incremented into "sor", "doctor" into "doctand", etc.
-          cyclic = true, -- "or" is incremented into "and".
+          elements = { 'True', 'False' },
+          word = true,
+          cyclic = true
+        },
+        augend.constant.new {
+          elements = { '==', '!=' },
+          word = false,
+          cyclic = true
+        },
+        augend.constant.new {
+          elements = { '===', '!==' },
+          word = false,
+          cyclic = true
+        },
+        augend.constant.new {
+          elements = { '>', '<' },
+          word = false,
+          cyclic = true
+        },
+        augend.constant.new {
+          elements = { '>=', '<=' },
+          word = false,
+          cyclic = true
         }
       }
     }
