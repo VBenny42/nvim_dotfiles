@@ -6,20 +6,23 @@ return {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     'benfowler/telescope-luasnip.nvim', 'nvim-telescope/telescope-file-browser.nvim'
   },
-  opts = {
-    -- defaults = {
-    --   borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
-    -- }
-  },
+  opts = {},
   keys = {
-    { '<leader>?',  function() require('telescope.builtin').oldfiles() end,    desc = '[?] find recently opened files' },
-    {
-      '<leader><space>',
-      function()
-        require('telescope.builtin').buffers()
-      end,
-      desc = '[ ] find existing buffers'
-    },
+    { '<leader>?',       require('telescope.builtin').oldfiles,                      desc = '[?] find recently opened files' },
+    { '<leader><space>', require('telescope.builtin').buffers,                       desc = '[ ] find existing buffers' },
+    { '<leader>sf',      require('telescope.builtin').find_files,                    desc = '[S]earch [F]iles' },
+    { '<leader>sh',      require('telescope.builtin').help_tags,                     desc = '[S]earch [H]elp' },
+    { '<leader>sw',      require('telescope.builtin').grep_string,                   desc = '[S]earch current [W]ord' },
+    { '<leader>sg',      require('telescope.builtin').live_grep,                     desc = '[S]earch by [G]rep' },
+    { '<leader>sb',      require('telescope.builtin').buffers,                       desc = '[S]earch [B]uffers' },
+    { '<leader>tr',      require('telescope.builtin').resume,                        desc = '[T]elescope [R]esume' },
+    { '<leader>km',      require('telescope.builtin').keymaps,                       desc = 'Telescope [K]ey[M]aps' },
+    { '<leader>ch',      require('telescope.builtin').command_history,               desc = 'Telescope [C]ommand [H]istory' },
+    { '<leader>gr',      require('telescope.builtin').lsp_references,                desc = '[G]oto [R]eferences' },
+    { '<leader>gt',      require('telescope.builtin').git_status,                    desc = '[G]it [S]tatus Files' },
+    { '<leader>ds',      require('telescope.builtin').lsp_document_symbols,          desc = '[D]ocument [S]ymbols' },
+    { '<leader>ws',      require('telescope.builtin').lsp_dynamic_workspace_symbols, desc = '[W]orkspace [S]ymbols' },
+    { '<leader>sd',      require('telescope.builtin').diagnostics,                   desc = '[S]earch [D]iagnostics' },
     {
       '<leader>/',
       function()
@@ -29,10 +32,6 @@ return {
       end,
       desc = '[/] fuzzily search in current buffer]'
     },
-    { '<leader>sf', function() require('telescope.builtin').find_files() end,  desc = '[S]earch [F]iles' },
-    { '<leader>sh', function() require('telescope.builtin').help_tags() end,   desc = '[S]earch [H]elp' },
-    { '<leader>sw', function() require('telescope.builtin').grep_string() end, desc = '[S]earch current [W]ord' },
-    { '<leader>sg', function() require('telescope.builtin').live_grep() end,   desc = '[S]earch by [G]rep' },
     {
       '<leader>sa',
       function()
@@ -43,56 +42,17 @@ return {
     {
       '<leader>sF',
       function() require('telescope.builtin').find_files({ hidden = true, no_ignore = true }) end,
-      desc =
-      '[S]earch [F]iles [A]ll files'
-    },
-    {
-      '<leader>sd',
-      function() require('telescope.builtin').diagnostics() end,
-      desc =
-      '[S]earch [D]iagnostics'
+      desc = '[S]earch [F]iles [A]ll files'
     },
     {
       '<leader>so',
-      function() require('telescope.builtin').lsp_document_symbols() end,
-      desc =
-      '[S]earch [O]utline with all symbols. <c-l> to filter by type.'
+      require('telescope.builtin').lsp_document_symbols,
+      desc = '[S]earch [O]utline with all symbols. <c-l> to filter by type.'
     },
     {
       '<leader>sO',
-      function() require('telescope.builtin').lsp_dynamic_workspace_symbols() end,
-      desc =
-      '[S]earch entire [O]utline with all symbols. <c-l> to filter by type.'
-    },
-    {
-      '<leader>sb',
-      function() require('telescope.builtin').buffers() end,
-      desc =
-      '[S]earch [B]uffers'
-    },
-    { '<leader>tr', function() require('telescope.builtin').resume() end,  desc = '[T]elescope [R]esume' },
-    { '<leader>km', function() require('telescope.builtin').keymaps() end, desc = 'Telescope [K]ey[M]aps' },
-    {
-      '<leader>ch',
-      function() require('telescope.builtin').command_history() end,
-      desc =
-      'Telescope [C]ommand [H]istory'
-    },
-    {
-      'gr',
-      function() require('telescope.builtin').lsp_references() end,
-      desc = '[G]oto [R]eferences'
-    },
-    {
-      '<leader>ds',
-      function() require('telescope.builtin').lsp_document_symbols() end,
-      desc =
-      '[D]ocument [S]ymbols'
-    },
-    {
-      '<leader>ws',
-      function() require('telescope.builtin').lsp_dynamic_workspace_symbols() end,
-      desc = '[W]orkspace [S]ymbols'
+      require('telescope.builtin').lsp_dynamic_workspace_symbols,
+      desc = '[S]earch entire [O]utline with all symbols. <c-l> to filter by type.'
     }
   },
   config = function(_, opts)
