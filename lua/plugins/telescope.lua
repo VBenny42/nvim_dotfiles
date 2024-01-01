@@ -2,9 +2,11 @@ return {
   'nvim-telescope/telescope.nvim',
   enabled = true,
   branch = '0.1.x',
-  dependencies = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-tree/nvim-web-devicons',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    'benfowler/telescope-luasnip.nvim', 'nvim-telescope/telescope-file-browser.nvim'
+    'benfowler/telescope-luasnip.nvim'
   },
   opts = {},
   keys = {
@@ -60,6 +62,5 @@ return {
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'luasnip')
     -- pcall(require('telescope').load_extension, 'aerial')
-    pcall(require('telescope').load_extension, 'file_browser')
   end
 }

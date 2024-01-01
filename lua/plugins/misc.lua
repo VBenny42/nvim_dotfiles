@@ -33,18 +33,18 @@ return {
     ft = 'rust'
   },
 
-  {
-    'kylechui/nvim-surround',
-    event = 'InsertEnter',
-    config = true
-  },
-
   { 'tpope/vim-repeat' },
   { 'tpope/vim-unimpaired' },
   { 'tpope/vim-abolish' },
   { 'tpope/vim-rhubarb' },
   { 'tpope/vim-dispatch' },
   { 'tpope/vim-sleuth' },
+
+  {
+    'kana/vim-textobj-entire',
+    event = { 'InsertEnter' },
+    dependencies = { 'kana/vim-textobj-user' }
+  },
 
   {
     'qpkorr/vim-renamer',
@@ -64,9 +64,5 @@ return {
     'andweeb/presence.nvim',
     event = 'VeryLazy',
     config = true
-  },
-
-  {
-    'Bekaboo/dropbar.nvim'
   }
 }

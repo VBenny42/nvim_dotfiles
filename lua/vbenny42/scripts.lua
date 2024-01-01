@@ -43,3 +43,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   command = 'silent! lua vim.highlight.on_yank({ timeout = 300 })',
   group = yankGroup
 })
+
+
+vim.keymap.set(
+  'n',
+  '<c-f>',
+  function() return ':e ' .. vim.fn.expand '%:p:h' .. '/' end,
+  { expr = true, desc = 'Open file in current directory' }
+)

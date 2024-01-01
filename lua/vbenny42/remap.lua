@@ -12,7 +12,12 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
+vim.keymap.set('n', '<leader>qq', '<cmd>wa | mksession! | qa<CR>', { desc = 'Save session and quit', silent = true })
+
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', silent = true })
+
+vim.keymap.set('n', 'Q', '@qj', { desc = 'Replay macro q', silent = true, remap = true })
+vim.keymap.set('x', 'Q', ':norm @q<CR>', { desc = 'Replay macro q', silent = true, remap = true })
 
 local function toggle_quickfix()
   local qf_exists = false
@@ -43,9 +48,8 @@ vim.keymap.set('n', '<leader>Y', [["+Y]])
 
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
 
-vim.keymap.set({ 'n', 'v' }, '|', [["+]], { desc = 'Select system clipboard', silent = true, remap = true })
+vim.keymap.set({ 'n', 'v' }, '\\', [["+]], { desc = 'Select system clipboard', silent = true, remap = true })
 
-vim.keymap.set('n', 'Q', '<nop>')
 vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
 
 -- Taken over by conform

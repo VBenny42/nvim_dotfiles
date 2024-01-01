@@ -16,3 +16,5 @@ vim.g.mapleader = ' '
 require('vbenny42')
 
 require('lazy').setup('plugins')
+require('lualine').hide({ place = { 'tabline' } })
+vim.notify('loaded lualine')

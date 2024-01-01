@@ -4,5 +4,8 @@ return {
   keys = {
     { '<leader>m', function() require('treesj').toggle() end, desc = 'Split/Join' }
   },
-  config = true
+  cmd = { 'TSJSplit', 'TSJJoin', 'TSJToggle' },
+  opts = {
+    use_default_keymaps = false
+  }
 }

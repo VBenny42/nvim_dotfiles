@@ -4,7 +4,7 @@ return {
   opts = {
     options = {
       -- theme = 'nord',
-      component_separators = '|',
+      component_separators = '',
       section_separators = '',
       globalstatus = true
     },
@@ -14,25 +14,26 @@ return {
         { 'diff',        on_click = function() require('gitsigns').diffthis() end },
         { 'diagnostics', on_click = function() vim.diagnostic.setqflist() end }
       }
-    },
-    tabline = {
-      lualine_a = {
-        {
-          'buffers',
-          mode = 4,
-          use_mode_colors = true,
-          filetype_names = { lazy = 'Lazy 󰒲', fugitive = 'Fugitive' }
-        }
-      }
     }
   },
   config = function(_, opts)
     hidden = true
     vim.keymap.set('n', '<leader>tt', function()
       if hidden then
-        require('lualine').hide({ unhide = true })
+        opts.tabline = {
+          lualine_a = {
+            {
+              'buffers',
+              mode = 4,
+              use_mode_colors = true,
+              filetype_names = { lazy = 'Lazy 󰒲', fugitive = 'Fugitive' }
+            }
+          }
+        }
+        require('lualine').setup(opts)
         hidden = false
       else
+        opts.tabline = nil
         require('lualine').hide({ place = { 'tabline' } })
         hidden = true
       end
@@ -48,10 +49,8 @@ return {
         opts.sections.lualine_b[3] = nil
       end
       require('lualine').setup(opts)
-      require('lualine').hide({ place = { 'tabline' } })
     end, { desc = 'Show Aerial in lualine' })
 
     require('lualine').setup(opts)
-    require('lualine').hide({ place = { 'tabline' } })
   end
 }

@@ -7,20 +7,26 @@ return {
 
           let g:vimtex_quickfix_open_on_warning = 0
 
-            let g:vimtex_view_method = 'skim'
+          let g:vimtex_view_method = 'skim'
 
-            let g:vimtex_quickfix_ignore_filters = [
-              \ 'Underfull \\hbox',
-              \ 'Overfull \\hbox',
-              \ 'LaTeX Warning: .\+ float specifier changed to',
-              \ 'LaTeX hooks Warning',
-              \ 'Package siunitx Warning: Detected the "physics" package:',
-              \ 'Package hyperref Warning: Token not allowed in a PDF string',
-              \]
+          let g:vimtex_quickfix_ignore_filters = [
+            \ 'Underfull \\hbox',
+            \ 'Overfull \\hbox',
+            \ 'LaTeX Warning: .\+ float specifier changed to',
+            \ 'LaTeX hooks Warning',
+            \ 'Package siunitx Warning: Detected the "physics" package:',
+            \ 'Package hyperref Warning: Token not allowed in a PDF string',
+            \]
+
+          let g:tex_flavor='latex'
+          let g:vimtex_view_method = 'skim'
+          let g:vimtex_view_skim_sync = 1
+          let g:vimtex_view_skim_activate = 1
       ]]
-
-    vim.opt.foldmethod = 'manual'
-
+    -- Default tex file format
+    -- Choose which program to use to view PDF file
+    -- Value 1 allows forward search after every successful compilation            vim.opt.foldmethod = 'manual'
+    -- Value 1 allows change focus to skim after command `:VimtexView` is given
     vim.keymap.set('i', '<S-CR>', '\\\\<CR>', { silent = true })
 
     vim.keymap.set('n', 'dse', '<Plug>(vimtex-env-delete)')
