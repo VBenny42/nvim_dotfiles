@@ -14,7 +14,8 @@ return {
     { 'saadparwaiz1/cmp_luasnip' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-nvim-lua' },
-    -- { 'hrsh7th/cmp-cmdline' },
+    { 'hrsh7th/cmp-cmdline' },
+    --{ 'dmitmel/cmp-cmdline-history' },
     { 'davidsierradz/cmp-conventionalcommits' },
 
     -- Snippets
@@ -122,6 +123,8 @@ return {
       end, { desc = 'Format current buffer with LSP' })
     end)
 
+    lsp.skip_server_setup({ 'rust_analyzer' })
+
     lsp.setup()
 
     -- Diagnostic keymaps
@@ -131,17 +134,50 @@ return {
     vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
     vim.diagnostic.config({
-      virtual_text = true
+      update_in_insert = false
+
     })
 
     local cmp = require('cmp')
+    local keymap = require('cmp.utils.keymap')
+    local luasnip = require('luasnip')
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
-    local cmp_mappings = lsp.defaults.cmp_mappings({
+    local cmp_mappings = vim.tbl_extend('keep', lsp.defaults.cmp_mappings({
       ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
       ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
       ['<C-y>'] = cmp.mapping.confirm({ select = true }),
       -- ['CR'] = cmp.mapping.confirm({ select = true }),
       ['<C-Space>'] = cmp.mapping.complete()
+    }), {
+      ['<Tab>'] = cmp.mapping(
+        function(fallback)
+          -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+          if cmp.visible() then
+            local entry = cmp.get_selected_entry()
+            if not entry then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            else
+              cmp.confirm()
+            end
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            if vim.fn.pumvisible() == 0 then
+              vim.api.nvim_feedkeys(keymap.t('<C-z>'), 'in', true)
+            else
+              vim.api.nvim_feedkeys(keymap.t('<C-n>'), 'in', true)
+            end
+          end
+        end, { 'i', 's', 'c' }),
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { 'i', 's' })
     })
 
     require('luasnip.loaders.from_vscode').lazy_load()
@@ -173,6 +209,7 @@ return {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = 'buffer' }
+        --{ name = 'cmdline_history' }
       }
     })
 
@@ -187,13 +224,14 @@ return {
     })
 
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-    -- cmp.setup.cmdline(':', {
-    --   mapping = cmp.mapping.preset.cmdline(),
-    --   sources = cmp.config.sources({
-    --     { name = 'path' }
-    --   }, {
-    --     { name = 'cmdline' }
-    --   })
-    -- })
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' }
+        --{ name = 'cmdline_history' }
+      }, {
+        { name = 'cmdline' }
+      })
+    })
   end
 }

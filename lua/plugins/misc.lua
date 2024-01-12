@@ -29,8 +29,16 @@ return {
   },
 
   {
-    'rust-lang/rust.vim',
-    ft = 'rust'
+    'mrcjkb/rustaceanvim',
+    version = '^3',
+    ft = { 'rust' }
+  },
+  {
+    'saecki/crates.nvim',
+    tag = 'stable',
+    event = { 'BufRead Cargo.toml' },
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = true
   },
 
   { 'tpope/vim-repeat' },

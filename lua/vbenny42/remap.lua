@@ -95,3 +95,6 @@ vim.keymap.set('n', '<BS>', function()
     end
   end
 end, { noremap = true, silent = false })
+
+vim.keymap.set('n', ']\\', '*', { silent = true, desc = 'Go to next word under cursor' })
+vim.keymap.set('n', '[\\', '#', { silent = true, desc = 'Go to previous word under cursor' })
