@@ -20,6 +20,6 @@ return {
   },
   config = function()
     require('lsp_lines').setup()
-    vim.diagnostic.config({ virtual_text = false })
+    lsp_lines_toggle()
   end
 }

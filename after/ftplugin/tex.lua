@@ -32,6 +32,11 @@ require('nvim-surround').buffer_setup {
         local env = require('nvim-surround.config').get_input 'Environment: '
         return { { '\\begin{' .. env .. '}' }, { '\\end{' .. env .. '}' } }
       end
+    },
+    ['m'] = {
+      add = function()
+        return { { '$' }, { '$' } }
+      end
     }
   }
 }

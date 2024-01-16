@@ -9,7 +9,7 @@ return {
     },
     event = 'BufReadPost',
     opts = {
-      ensure_installed = { 'c', 'lua', 'javascript', 'typescript', 'vim', 'vimdoc', 'python' },
+      ensure_installed = { 'c', 'lua', 'javascript', 'typescript', 'vim', 'vimdoc', 'python', 'markdown', 'markdown_inline' },
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,

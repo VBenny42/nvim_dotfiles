@@ -5,15 +5,15 @@ local get_root = function(bufnr)
 end
 
 local number_to_letter_map = {
-  [1] = 'a',
-  [2] = 'b',
-  [3] = 'c',
-  [4] = 'd',
-  [5] = 'e',
-  [6] = 'f',
-  [7] = 'g',
-  [8] = 'h',
-  [9] = 'i',
+  [1]  = 'a',
+  [2]  = 'b',
+  [3]  = 'c',
+  [4]  = 'd',
+  [5]  = 'e',
+  [6]  = 'f',
+  [7]  = 'g',
+  [8]  = 'h',
+  [9]  = 'i',
   [10] = 'j',
   [11] = 'k',
   [12] = 'l',
@@ -33,7 +33,7 @@ local number_to_letter_map = {
   [26] = 'z'
 }
 
-local function count_to_string(count, name)
+local function count_tostring(count, name)
   if name == 'first_lvl_item' then
     return tostring(count) .. '.'
   elseif name == 'second_lvl_item' then
@@ -56,14 +56,14 @@ local function get_item_numbers(bufnr)
     (curly_group_text
       ((text) @document
               (#eq? @document "document")
-              )
       )
     )
+  )
   ((generic_environment
       (begin
         (curly_group_text
-          ((text) @top_lvl_enumerate
-                  (#eq? @top_lvl_enumerate "enumerate")
+          ((text) @first_lvl_enumerate
+                  (#eq? @first_lvl_enumerate "enumerate")
           )
         )
       )
@@ -112,9 +112,10 @@ local function get_item_numbers(bufnr)
     vim.api.nvim_buf_set_extmark(bufnr, ns_id, range[1], range[2], {
       virt_text = {
         {
-          count_to_string(count, name), -- .. ' (' .. tostring(id) .. ') ',
+          count_tostring(count, name), -- .. ' (' .. tostring(id) .. ') ',
           'CursorLine'
-        }
+        },
+        { ' ', 'NONE' }
       },
       virt_text_pos = 'inline'
     })
