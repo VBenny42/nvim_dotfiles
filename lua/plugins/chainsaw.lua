@@ -24,6 +24,7 @@ return {
   -- Add opts for C and Rust maybe? Only works for Python, JS and Lua by default
   config = true,
   opts = {
+    marker = 'LOG:',
     logStatements = {
       variableLog = {
         rust = 'println!("{} {}: {:?}", "%s", "%s", %s);'

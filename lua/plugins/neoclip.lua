@@ -3,6 +3,7 @@ return {
   dependencies = {
     'nvim-telescope/telescope.nvim'
   },
+  enabled = false,
   keys = {
     { '<leader>tp', function() require('telescope').extensions.neoclip.default() end, desc = 'Open neoclip', silent = true }
   },

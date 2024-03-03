@@ -1,10 +1,10 @@
 return {
   'tversteeg/registers.nvim',
   name = 'registers',
-  keys = {
-    { '\"',    mode = { 'n', 'v' } },
-    { '<C-R>', mode = 'i' }
-  },
+  -- keys = {
+  --   { '"', mode = { 'n', 'v' } }
+  --   { '<C-R>', mode = 'i' }
+  -- },
   cmd = 'Registers',
   config = true
 }

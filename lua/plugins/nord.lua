@@ -11,6 +11,7 @@ return {
   -- }
   {
     'shaunsingh/nord.nvim',
+    enabled = true,
     lazy = false,
     name = 'nord',
     priority = 1000,
@@ -28,6 +29,29 @@ return {
       vim.g.nord_italic = false
       vim.g.nord_bold = false
       require('nord').set()
+    end
+  },
+  {
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    enabled = false,
+    priority = 1000,
+    config = function()
+      require 'nordic'.load()
+    end
+  },
+  {
+    'fcancelinha/northern.nvim',
+    branch = 'master',
+    enabled = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme('northern')
+      require('lualine').setup {
+        options = {
+          theme = 'northern'
+        }
+      }
     end
   }
 }

@@ -19,7 +19,7 @@ augroup vimtex_common
 augroup END
 ]]
 
-require('nvim-surround').buffer_setup {
+require('nvim-surround').buffer_setup({
   surrounds = {
     ['c'] = {
       add = function()
@@ -39,4 +39,10 @@ require('nvim-surround').buffer_setup {
       end
     }
   }
-}
+})
+--
+-- vim.api.nvim_create_user_command('BreakLines',
+--   function()
+--     vim.cmd('s/\\./.\r/g')
+--     require('conform').format({ async = true, lsp_fallback = true })
+--   end, { desc = 'Break lines at periods' })

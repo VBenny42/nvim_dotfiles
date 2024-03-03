@@ -3,7 +3,7 @@ return {
   'Wansmer/symbol-usage.nvim',
   -- event = 'LspAttach', -- need run before LspAttach if you use nvim 0.9. On 0.10 use 'LspAttach'
   lazy = true,
-  opts = {},
+  enabled = false,
   config = function(_, opts)
     local function h(name) return vim.api.nvim_get_hl(0, { name = name }) end
 

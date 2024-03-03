@@ -44,3 +44,9 @@ vim.opt.wrap = true
 vim.opt.termguicolors = true
 
 vim.g.rustfmt_autosave = 1
+
+vim.cmd [[
+if exists('+fixeol')
+    set nofixeol
+endif
+]]

@@ -13,7 +13,7 @@ end
 
 return {
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-  event = 'LspAttach',
+  -- event = 'LspAttach',
   keys = {
     -- I don't know if I'll use this or not
     { '<leader>lt', lsp_lines_toggle, desc = 'Toggle LSP lines' }

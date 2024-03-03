@@ -19,6 +19,9 @@ vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', s
 vim.keymap.set('n', 'Q', '@qj', { desc = 'Replay macro q', silent = true, remap = true })
 vim.keymap.set('x', 'Q', ':norm @q<CR>', { desc = 'Replay macro q', silent = true, remap = true })
 
+vim.keymap.set('n', ',w', '<cmd>update<CR>', { desc = 'Write buffer' })
+vim.keymap.set('n', ',W', '<cmd>noautocmd update<CR>', { desc = 'Write buffer' })
+
 local function toggle_quickfix()
   local qf_exists = false
   for _, win in pairs(vim.fn.getwininfo()) do
@@ -39,7 +42,7 @@ end
 vim.keymap.set('n', 'qt', toggle_quickfix, { desc = '[T]oggle [Q]uickfix' })
 
 -- greatest remap ever
-vim.keymap.set('x', '<leader>p', [["+p]], { desc = 'Paste from system clipboard' })
+vim.keymap.set({ 'n', 'v' }, '<leader>p', [["+p]], { desc = 'Paste from system clipboard' })
 vim.keymap.set('x', '<leader>P', [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
@@ -49,6 +52,7 @@ vim.keymap.set('n', '<leader>Y', [["+Y]])
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
 
 vim.keymap.set({ 'n', 'v' }, '\\', [["+]], { desc = 'Select system clipboard', silent = true, remap = true })
+vim.keymap.set({ 'n', 'v' }, '\\y', [["+y]], { desc = 'Select system clipboard and yank', silent = true, remap = true })
 
 vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
 

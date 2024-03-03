@@ -11,5 +11,5 @@ return {
     { '<leader>ql', function() require('persistence').load({ last = true }) end, desc = 'Load [L]ast Session' },
     { '<leader>qs', function() require('persistence').stop() end,                desc = 'Stop Saving Session' }
   },
-  opts = {}
+  config = true
 }
