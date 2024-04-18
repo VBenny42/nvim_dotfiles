@@ -1,5 +1,5 @@
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>pV', vim.cmd.Ex, { desc = 'Open netrw' })
+-- vim.keymap.set('n', '<leader>pV', vim.cmd.Ex, { desc = 'Open netrw' })
 
 vim.keymap.set('', 'Y', 'y$')
 

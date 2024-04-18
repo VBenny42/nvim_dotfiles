@@ -57,6 +57,15 @@ return
       }
     )
   ),
+  -- BOLD and ITALIC i.e. \textbf{\textit}
+  s({ trig = 'tbi', snippetType = 'autosnippet' },
+    fmta(
+      '\\textbf{\\textit{<>}}',
+      {
+        d(1, get_visual)
+      }
+    )
+  ),
   -- BOLD i.e. \textbf
   s({ trig = 'tbb', snippetType = 'autosnippet' },
     fmta(
@@ -66,7 +75,7 @@ return
       }
     )
   ),
-  -- SMALLCAPS i.e. \textsx
+  -- SMALLCAPS i.e. \textsc
   s({ trig = 'tsc', snippetType = 'autosnippet' },
     fmta(
       '\\textsc{<>}',
