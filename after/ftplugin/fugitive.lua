@@ -8,3 +8,11 @@ vim.keymap.set('n', '\\p', function()
     vim.cmd('norm! "+p<CR>')
   end
 end, { silent = true, noremap = true })
+
+vim.api.nvim_create_user_command(
+  'Browse',
+  function(opts)
+    vim.fn.system { 'open', opts.fargs[1] }
+  end,
+  { nargs = 1 }
+)

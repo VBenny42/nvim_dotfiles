@@ -42,12 +42,11 @@ return {
     local toggle = true
     vim.keymap.set('n', '<leader>ll', function()
       if toggle then
-        toggle = false
         opts.sections.lualine_b[3] = { 'aerial', on_click = function() require('aerial').toggle() end }
       else
-        toggle = true
         opts.sections.lualine_b[3] = nil
       end
+      toggle = not toggle
       require('lualine').setup(opts)
     end, { desc = 'Show Aerial in lualine' })
 

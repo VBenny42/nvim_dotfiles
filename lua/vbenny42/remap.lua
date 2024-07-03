@@ -1,4 +1,3 @@
-vim.g.mapleader = ' '
 -- vim.keymap.set('n', '<leader>pV', vim.cmd.Ex, { desc = 'Open netrw' })
 
 vim.keymap.set('', 'Y', 'y$')
@@ -15,11 +14,13 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('n', '<leader>qq', '<cmd>wa | mksession! | qa<CR>', { desc = 'Save session and quit', silent = true })
 
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', silent = true })
+vim.keymap.set('n', 'bd', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', silent = true })
 
 vim.keymap.set('n', 'Q', '@qj', { desc = 'Replay macro q', silent = true, remap = true })
 vim.keymap.set('x', 'Q', ':norm @q<CR>', { desc = 'Replay macro q', silent = true, remap = true })
 
 vim.keymap.set('n', ',w', '<cmd>update<CR>', { desc = 'Write buffer' })
+vim.keymap.set('n', ',q', '<cmd>update | q<CR>', { desc = 'Write buffer and quit' })
 vim.keymap.set('n', ',W', '<cmd>noautocmd update<CR>', { desc = 'Write buffer' })
 
 local function toggle_quickfix()
@@ -42,7 +43,7 @@ end
 vim.keymap.set('n', 'qt', toggle_quickfix, { desc = '[T]oggle [Q]uickfix' })
 
 -- greatest remap ever
-vim.keymap.set({ 'n', 'v' }, '<leader>p', [["+p]], { desc = 'Paste from system clipboard' })
+-- vim.keymap.set({ 'n', 'v' }, '<leader>p', [["+p]], { desc = 'Paste from system clipboard' })
 vim.keymap.set('x', '<leader>P', [["_dP]])
 
 -- next greatest remap ever : asbjornHaland

@@ -1,5 +1,5 @@
 vim.g.mapleader = ' '
-vim.g.maplocaleader = ' '
+vim.g.maplocalleader = ' '
 
 vim.opt.nu = true
 vim.opt.relativenumber = true

@@ -8,7 +8,11 @@ return {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     'benfowler/telescope-luasnip.nvim'
   },
-  opts = {},
+  opts = {
+    defaults = {
+      prompt_prefix = '󰼛 '
+    }
+  },
   keys = {
     { '<leader>?',       require('telescope.builtin').oldfiles,                      desc = '[?] find recently opened files' },
     { '<leader><space>', require('telescope.builtin').buffers,                       desc = '[ ] find existing buffers' },

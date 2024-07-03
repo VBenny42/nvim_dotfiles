@@ -3,7 +3,10 @@ return {
   dependencies = {
     -- LSP Support
     { 'neovim/nvim-lspconfig' },
-    { 'williamboman/mason.nvim' },
+    {
+      'williamboman/mason.nvim',
+      cmd = 'Mason'
+    },
     { 'williamboman/mason-lspconfig.nvim' },
     { 'onsails/lspkind.nvim' },
 
@@ -28,59 +31,81 @@ return {
     local lsp = require('lsp-zero')
     local lspkind = require('lspkind')
 
-    lsp.preset('recommended')
+    lsp.set_sign_icons({
+      error = '',
+      warn = '',
+      hint = '',
+      info = '',
+      other = ''
+    })
 
-    for name, icon in pairs({
-      Error = '',
-      Warn = '',
-      Hint = '',
-      Info = '',
-      Other = ''
-    }) do
-      name = 'DiagnosticSign' .. name
-      vim.fn.sign_define(name, {
-        text = icon,
-        texthl = name,
-        numhl = ''
-      })
-    end
+    require('mason').setup()
+    require('mason-lspconfig').setup({
+      ensure_installed = { 'tsserver', 'eslint', 'lua_ls' },
+      handlers = {
+        function(server_name)
+          require('lspconfig')[server_name].setup({})
+        end,
 
-    -- Fix Undefined global 'vim'
-    lsp.configure('lua_ls', {
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { 'vim' }
-          },
-          telemetry = { enable = false },
-          workspace = {
-            library = {
-              [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-              [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+        -- skip server setup for rust_analyzer
+        rust_analyzer = function() end,
+
+        tsserver = function()
+          -- local inlayHints = {
+          --   includeInlayParameterNameHints = 'all',
+          --   includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          --   includeInlayFunctionParameterTypeHints = true,
+          --   includeInlayVariableTypeHints = true,
+          --   includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          --   includeInlayPropertyDeclarationTypeHints = true,
+          --   includeInlayFunctionLikeReturnTypeHints = true,
+          --   includeInlayEnumMemberValueHints = true
+          -- }
+          -- require('lspconfig').tsserver.setup {
+          --   settings = {
+          --     typescript = {
+          --       inlayHints = inlayHints
+          --     },
+          --     javascript = {
+          --       inlayHints = inlayHints
+          --     }
+          --   }
+          -- }
+          require('lspconfig').tsserver.setup()
+        end,
+
+        lua_ls = function()
+          require('lspconfig').lua_ls.setup({
+            settings = {
+              Lua = {
+                diagnostics = {
+                  globals = { 'vim' }
+                },
+                -- hint = { enable = true },
+                telemetry = { enable = false },
+                workspace = {
+                  library = {
+                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+                  }
+                },
+                format = {
+                  enable = true,
+                  defaultConfig = {
+                    indent_style = 'space',
+                    indent_size = '2',
+                    quote_style = 'single',
+                    trailing_table_separator = 'never'
+                  }
+                }
+              }
             }
-          },
-          format = {
-            enable = true,
-            -- Put format options here
-            -- NOTE: the value should be String!
-            defaultConfig = {
-              indent_style = 'space',
-              indent_size = '2',
-              quote_style = 'single',
-              trailing_table_separator = 'never'
-            }
-          }
-        }
+          })
+        end
       }
     })
 
-    lsp.ensure_installed({
-      'tsserver',
-      'eslint',
-      'lua_ls'
-    })
-
-    lsp.on_attach(function(_, bufnr)
+    lsp.on_attach(function(client, bufnr)
       -- NOTE: Remember that lua is a real programming language, and as such it is possible
       -- to define small helper and utility functions so you don't have to repeat yourself
       -- many times.
@@ -99,7 +124,7 @@ return {
       nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
       nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-      -- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+      nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
       nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
       nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
       -- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
@@ -116,78 +141,25 @@ return {
       nmap('<leader>wl', function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end, '[W]orkspace [L]ist Folders')
-
-      -- Create a command `:Format` local to the LSP buffer
-      vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        vim.lsp.buf.format()
-      end, { desc = 'Format current buffer with LSP' })
     end)
-
-    lsp.skip_server_setup({ 'rust_analyzer' })
 
     lsp.setup()
 
     -- Diagnostic keymaps
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+    vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
     vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
     vim.diagnostic.config({
       update_in_insert = false
-
     })
 
     local cmp = require('cmp')
-    local keymap = require('cmp.utils.keymap')
-    local luasnip = require('luasnip')
-    local cmp_select = { behavior = cmp.SelectBehavior.Select }
-    local cmp_mappings = vim.tbl_extend('keep', lsp.defaults.cmp_mappings({
-      ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-      ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-      ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-      -- ['CR'] = cmp.mapping.confirm({ select = true }),
-      ['<C-Space>'] = cmp.mapping.complete()
-    }), {
-      ['<Tab>'] = cmp.mapping(
-        function(fallback)
-          -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-          if cmp.visible() then
-            local entry = cmp.get_selected_entry()
-            if not entry then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            else
-              cmp.confirm()
-            end
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            if vim.fn.pumvisible() == 0 then
-              vim.api.nvim_feedkeys(keymap.t('<C-z>'), 'in', true)
-            else
-              vim.api.nvim_feedkeys(keymap.t('<C-n>'), 'in', true)
-            end
-          end
-        end, { 'i', 's', 'c' }),
-      ['<S-Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        else
-          fallback()
-        end
-      end, { 'i', 's' })
-    })
+    local cmp_action = require('lsp-zero').cmp_action()
 
     require('luasnip.loaders.from_vscode').lazy_load()
-
-    lsp.setup_nvim_cmp({
-      mapping = cmp_mappings,
-      formatting = {
-        format = lspkind.cmp_format({ mode = 'symbol', with_text = true, maxwidth = 50 })
-      }
-    })
 
     cmp.setup({
       sources = {
@@ -197,10 +169,19 @@ return {
         { name = 'path' }
       },
       mapping = {
-        ['<CR>'] = cmp.mapping.confirm({ select = true })
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = cmp_action.luasnip_supertab(),
+        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab()
       },
+      ---@diagnostic disable-next-line: missing-fields
       formatting = {
+        expandable_indicator = true,
         format = lspkind.cmp_format({ mode = 'symbol_text', with_text = true, maxwidth = 50 })
+      },
+      snippet = {
+        expand = function(args)
+          require('luasnip').lsp_expand(args.body)
+        end
       }
     })
 
@@ -216,8 +197,8 @@ return {
     cmp.setup.filetype('gitcommit', {
       sources = require('cmp').config.sources(
         {
-          { name = 'conventionalcommits' },
-          { name = 'luasnip' }
+          { name = 'luasnip' },
+          { name = 'conventionalcommits' }
         },
         { { name = 'buffer' } }
       )

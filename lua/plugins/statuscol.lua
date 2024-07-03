@@ -7,6 +7,7 @@ return {
     local opts = {
       relculright = false, -- whether to right-align the cursor line number with 'relativenumber' set
       segments = {
+        { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
         {
           -- Git Signs
           text = { '%s' },

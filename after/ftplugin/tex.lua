@@ -1,3 +1,5 @@
+vim.g.maplocalleader = ','
+
 vim.api.nvim_create_autocmd(
   'QuitPre',
   {
