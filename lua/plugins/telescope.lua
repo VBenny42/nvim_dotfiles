@@ -1,3 +1,27 @@
+local function delete_buffers(prompt_bufnr)
+  local actions_state = require('telescope.actions.state')
+  local actions = require('telescope.actions')
+
+  local current_picker = actions_state.get_current_picker(prompt_bufnr)
+  local selected_entries = current_picker:get_multi_selection()
+
+  -- if there are no selected entries then delete single buffer hovered
+  if #selected_entries == 0 then
+    local selected_entry = actions_state.get_selected_entry()
+    vim.api.nvim_buf_delete(selected_entry.bufnr, { force = true })
+    actions.close(prompt_bufnr)
+    return
+  end
+
+  -- Loop over all selected entries and delete each file
+  for _, entry in ipairs(selected_entries) do
+    vim.api.nvim_buf_delete(entry.bufnr, { force = true })
+  end
+
+  -- Close the picker
+  actions.close(prompt_bufnr)
+end
+
 return {
   'nvim-telescope/telescope.nvim',
   enabled = true,
@@ -11,6 +35,18 @@ return {
   opts = {
     defaults = {
       prompt_prefix = '󰼛 '
+    },
+    pickers = {
+      buffers = {
+        mappings = {
+          n = {
+            ['dd'] = delete_buffers
+          },
+          i = {
+            ['<c-d>'] = delete_buffers
+          }
+        }
+      }
     }
   },
   keys = {

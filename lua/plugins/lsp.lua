@@ -50,29 +50,28 @@ return {
         -- skip server setup for rust_analyzer
         rust_analyzer = function() end,
 
-        tsserver = function()
-          -- local inlayHints = {
-          --   includeInlayParameterNameHints = 'all',
-          --   includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          --   includeInlayFunctionParameterTypeHints = true,
-          --   includeInlayVariableTypeHints = true,
-          --   includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-          --   includeInlayPropertyDeclarationTypeHints = true,
-          --   includeInlayFunctionLikeReturnTypeHints = true,
-          --   includeInlayEnumMemberValueHints = true
-          -- }
-          -- require('lspconfig').tsserver.setup {
-          --   settings = {
-          --     typescript = {
-          --       inlayHints = inlayHints
-          --     },
-          --     javascript = {
-          --       inlayHints = inlayHints
-          --     }
-          --   }
-          -- }
-          require('lspconfig').tsserver.setup()
-        end,
+        -- tsserver = function()
+        --   local inlayHints = {
+        --     includeInlayParameterNameHints = 'all',
+        --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        --     includeInlayFunctionParameterTypeHints = true,
+        --     includeInlayVariableTypeHints = true,
+        --     includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        --     includeInlayPropertyDeclarationTypeHints = true,
+        --     includeInlayFunctionLikeReturnTypeHints = true,
+        --     includeInlayEnumMemberValueHints = true
+        --   }
+        --   require('lspconfig').tsserver.setup {
+        --     settings = {
+        --       typescript = {
+        --         inlayHints = inlayHints
+        --       },
+        --       javascript = {
+        --         inlayHints = inlayHints
+        --       }
+        --     }
+        --   }
+        -- end,
 
         lua_ls = function()
           require('lspconfig').lua_ls.setup({
