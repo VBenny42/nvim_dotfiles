@@ -1,6 +1,6 @@
 -- vim.keymap.set('n', '<leader>pV', vim.cmd.Ex, { desc = 'Open netrw' })
 
-vim.keymap.set('', 'Y', 'y$')
+vim.keymap.set({ 'n', 'o' }, 'Y', 'y$')
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { silent = true })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { silent = true })
@@ -14,14 +14,20 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('n', '<leader>qq', '<cmd>wa | mksession! | qa<CR>', { desc = 'Save session and quit', silent = true })
 
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', silent = true })
-vim.keymap.set('n', 'bd', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', silent = true })
+vim.keymap.set('n', ',d', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', silent = true })
 
 vim.keymap.set('n', 'Q', '@qj', { desc = 'Replay macro q', silent = true, remap = true })
 vim.keymap.set('x', 'Q', ':norm @q<CR>', { desc = 'Replay macro q', silent = true, remap = true })
 
 vim.keymap.set('n', ',w', '<cmd>update<CR>', { desc = 'Write buffer' })
-vim.keymap.set('n', ',q', '<cmd>update | q<CR>', { desc = 'Write buffer and quit' })
+vim.keymap.set('n', ',q', '<cmd>x<CR>', { desc = 'Write buffer and quit' })
+vim.keymap.set('n', ',Q', '<cmd>q!<CR>', { desc = 'Quit without saving' })
 vim.keymap.set('n', ',W', '<cmd>noautocmd update<CR>', { desc = 'Write buffer' })
+
+-- Substitute with magic mode
+vim.keymap.set('n', ',s', ':s/\\v', { desc = 'Substitute' })
+vim.keymap.set('x', ',s', ':s/\\v', { desc = 'Substitute' })
+vim.keymap.set('n', ',S', ':%s/\\v', { desc = 'Substitute' })
 
 local function toggle_quickfix()
   local qf_exists = false

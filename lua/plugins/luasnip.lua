@@ -1,5 +1,6 @@
 return {
   'L3MON4D3/LuaSnip',
+  build = 'make install_jsregexp',
   event = 'InsertEnter',
   keys = {
     { '<leader>ls', function() require('telescope').extensions.luasnip.luasnip() end, desc = '[L]ua[S]nippets' }

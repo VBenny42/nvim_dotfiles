@@ -41,7 +41,7 @@ return {
 
     require('mason').setup()
     require('mason-lspconfig').setup({
-      ensure_installed = { 'tsserver', 'eslint', 'lua_ls' },
+      ensure_installed = { 'tsserver', 'eslint', 'lua_ls', 'dockerls', 'docker_compose_language_service', 'pyright' },
       handlers = {
         function(server_name)
           require('lspconfig')[server_name].setup({})
@@ -101,6 +101,7 @@ return {
             }
           })
         end
+
       }
     })
 

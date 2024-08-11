@@ -7,7 +7,8 @@ return {
       'nvim-treesitter/nvim-treesitter-refactor',
       'nvim-treesitter/nvim-treesitter-context'
     },
-    event = 'BufReadPost',
+    -- event = 'BufReadPost',
+    lazy = false,
     opts = {
       ensure_installed = { 'c', 'lua', 'javascript', 'typescript', 'vim', 'vimdoc', 'python', 'markdown', 'markdown_inline' },
 
@@ -36,6 +37,8 @@ return {
           init_selection = '<c-space>',
           node_incremental = '<c-space>',
           scope_incremental = '<c-s>',
+          -- NOTE: node_decremental is not working for some reason
+          -- find out eventually
           node_decremental = '<c-backspace>'
         }
       },

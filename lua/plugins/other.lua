@@ -1,5 +1,6 @@
 return {
   'rgroli/other.nvim',
+  enabled = false,
   cmd = { 'Other', 'OtherSplit', 'OtherTabNew', 'OtherVSplit' },
   keys = { { '<leader>o', '<CMD>Other<CR>', noremap = true, silent = true } },
   opts = {

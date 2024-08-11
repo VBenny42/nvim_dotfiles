@@ -1,8 +1,11 @@
-local bufname = vim.api.nvim_buf_get_name(0)
+local group = vim.api.nvim_create_augroup('CheckCompose', { clear = true })
 
-local find_yml = string.find(bufname, 'docker%-compose%.yml$')
-local find_yaml = string.find(bufname, 'docker%-compose%.yaml$')
-
-if find_yml or find_yaml then
-  vim.api.nvim_set_option_value('filetype', 'yaml.docker-compose', { buf = 0 })
-end
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' },
+  {
+    pattern = { 'docker-compose.yaml', 'docker-compose.yml', 'compose.yml', 'compose.yaml' },
+    group = group,
+    command = 'set filetype=yaml.docker-compose',
+    desc = 'Set filetype to yaml.docker-compose for docker-compose files',
+    once = true
+  }
+)
