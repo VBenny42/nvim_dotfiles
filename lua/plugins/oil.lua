@@ -18,8 +18,8 @@ return {
     keys = {
       { '<leader>pV', '<CMD>Oil<CR>',                               desc = 'Open oil' },
       -- Might swap the two keymaps if I find myself using the float more often
-      { '-',          '<CMD>Oil<CR>',                               desc = 'Open oil' },
-      { '<leader>-',  function() require('oil').toggle_float() end, desc = 'Toggle oil float' }
+      { '<leader>-',  '<CMD>Oil<CR>',                               desc = 'Open oil' },
+      { '-',          function() require('oil').toggle_float() end, desc = 'Toggle oil float' }
     }
   },
   {

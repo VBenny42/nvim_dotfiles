@@ -42,7 +42,7 @@ require('nvim-surround').buffer_setup({
     }
   }
 })
---
+
 -- vim.api.nvim_create_user_command('BreakLines',
 --   function()
 --     vim.cmd('s/\\./.\r/g')

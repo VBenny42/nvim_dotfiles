@@ -27,7 +27,8 @@ return {
     marker = 'LOG:',
     logStatements = {
       variableLog = {
-        rust = 'println!("{} {}: {:?}", "%s", "%s", %s);'
+        rust = 'println!("{} {}: {:?}", "%s", "%s", %s);',
+        go = 'fmt.Println("%s %s:", %s)'
       },
       messageLog = {
         rust = 'println!("{} ", "%s");'

@@ -1,5 +1,5 @@
 return {
-  'chrishrb/gx.nvim',
+  'VBenny42/gx.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
   keys = { 'gx' },
   opts = {

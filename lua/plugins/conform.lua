@@ -1,8 +1,7 @@
-local prettier = { 'prettierd' }
-
 local slow_format_filetypes = {}
 return {
   'stevearc/conform.nvim',
+  enabled = true,
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
   keys = {
@@ -16,17 +15,18 @@ return {
   },
   opts = {
     formatters_by_ft = {
-      javascript = { prettier },
-      typescript = { prettier },
-      javascriptreact = { prettier },
-      typescriptreact = { prettier },
-      css = { prettier },
-      html = { prettier },
-      json = { prettier },
-      jsonc = { prettier },
-      yaml = { prettier },
-      markdown = { prettier },
-      graphql = { prettier },
+      javascript = { 'prettierd' },
+      typescript = { 'prettierd' },
+      javascriptreact = { 'prettierd' },
+      typescriptreact = { 'prettierd' },
+      css = { 'prettierd' },
+      html = { 'prettierd' },
+      json = { 'prettierd' },
+      sql = { 'sleek' },
+      jsonc = { 'prettierd' },
+      yaml = { 'prettierd' },
+      markdown = { 'prettierd' },
+      graphql = { 'prettierd' },
       python = { 'isort', 'black' },
       latex = { 'latexindent' },
       tex = { 'latexindent' },

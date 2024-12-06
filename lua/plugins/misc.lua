@@ -42,7 +42,12 @@ return {
   },
 
   { 'tpope/vim-repeat' },
-  { 'tpope/vim-unimpaired' },
+  -- { 'tpope/vim-unimpaired' },
+  {
+    'tummetott/unimpaired.nvim',
+    event = 'VeryLazy',
+    config = true
+  },
   { 'tpope/vim-abolish' },
   { 'tpope/vim-rhubarb' },
   { 'tpope/vim-dispatch' },

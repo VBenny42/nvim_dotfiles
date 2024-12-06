@@ -18,6 +18,16 @@ return {
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-nvim-lua' },
     { 'hrsh7th/cmp-cmdline' },
+    {
+      'uga-rosa/cmp-dictionary',
+      ft = { 'markdown', 'text', 'latex' },
+      config = function()
+        require('cmp_dictionary').setup({
+          paths = { '/usr/share/dict/words' },
+          exact_length = 3
+        })
+      end
+    },
     --{ 'dmitmel/cmp-cmdline-history' },
     { 'davidsierradz/cmp-conventionalcommits' },
 
@@ -41,7 +51,7 @@ return {
 
     require('mason').setup()
     require('mason-lspconfig').setup({
-      ensure_installed = { 'tsserver', 'eslint', 'lua_ls', 'dockerls', 'docker_compose_language_service', 'pyright' },
+      ensure_installed = { 'ts_ls', 'eslint', 'lua_ls', 'dockerls', 'docker_compose_language_service', 'pyright', 'gopls' },
       handlers = {
         function(server_name)
           require('lspconfig')[server_name].setup({})
@@ -50,7 +60,17 @@ return {
         -- skip server setup for rust_analyzer
         rust_analyzer = function() end,
 
-        -- tsserver = function()
+        gopls = function()
+          require('lspconfig').gopls.setup({
+            settings = {
+              gopls = {
+                gofumpt = true
+              }
+            }
+          })
+        end,
+
+        -- ts_ls = function()
         --   local inlayHints = {
         --     includeInlayParameterNameHints = 'all',
         --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
@@ -61,7 +81,7 @@ return {
         --     includeInlayFunctionLikeReturnTypeHints = true,
         --     includeInlayEnumMemberValueHints = true
         --   }
-        --   require('lspconfig').tsserver.setup {
+        --   require('lspconfig').ts_ls.setup {
         --     settings = {
         --       typescript = {
         --         inlayHints = inlayHints
@@ -105,7 +125,7 @@ return {
       }
     })
 
-    lsp.on_attach(function(client, bufnr)
+    lsp.on_attach(function(_, bufnr)
       -- NOTE: Remember that lua is a real programming language, and as such it is possible
       -- to define small helper and utility functions so you don't have to repeat yourself
       -- many times.
@@ -199,6 +219,37 @@ return {
         {
           { name = 'luasnip' },
           { name = 'conventionalcommits' }
+        },
+        { { name = 'buffer' } }
+      )
+    })
+
+    cmp.setup.filetype('markdown', {
+      sources = require('cmp').config.sources(
+        {
+          { name = 'luasnip' },
+          { name = 'dictionary', keyword_length = 3 }
+        },
+        { { name = 'buffer' } }
+      )
+    })
+
+    cmp.setup.filetype('text', {
+      sources = require('cmp').config.sources(
+        {
+          { name = 'dictionary', keyword_length = 3 }
+        },
+        { { name = 'buffer' } }
+      )
+    })
+
+    cmp.setup.filetype('tex', {
+      sources = require('cmp').config.sources(
+        {
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
+          { name = 'dictionary', keyword_length = 3 },
+          { name = 'buffer' }
         },
         { { name = 'buffer' } }
       )
