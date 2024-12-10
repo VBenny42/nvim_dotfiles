@@ -13,6 +13,7 @@ return {
       desc = 'Format buffer'
     }
   },
+  ---@type conform.setupOpts
   opts = {
     formatters_by_ft = {
       javascript = { 'prettierd' },
@@ -25,7 +26,7 @@ return {
       sql = { 'sleek' },
       jsonc = { 'prettierd' },
       yaml = { 'prettierd' },
-      markdown = { 'prettierd' },
+      markdown = { 'deno_fmt' },
       graphql = { 'prettierd' },
       python = { 'isort', 'black' },
       latex = { 'latexindent' },
@@ -44,21 +45,31 @@ return {
         end
       end
 
-      return { timeout_ms = 200, lsp_fallback = true }, on_format
+      return { timeout_ms = 200, lsp_fallback = true, on_format }
     end,
     format_after_save = function(bufnr)
       if not slow_format_filetypes[vim.bo[bufnr].filetype] then
         return
       end
       return { lsp_fallback = true }
-    end
+    end,
+    formatters = {
+      latexindent = {
+        prepend_args = function()
+          return { '-m' }
+        end
+      },
+      -- deno_fmt = {
+      --   append_args = function()
+      --     return { '--indent-width=4' }
+      --   end
+      -- },
+    }
   },
   init = function()
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
   end,
   config = function(_, opts)
-    -- vim.list_extend(require("conform.formatters.shfmt").args, { "-i", "2" })
-    vim.list_extend(require('conform.formatters.latexindent').args, { '-m' })
     if vim.g.started_by_firenvim then
       opts.format_on_save = false
       opts.format_after_save = false

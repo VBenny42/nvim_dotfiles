@@ -1,4 +1,5 @@
 vim.keymap.set('n', '\\s', '<CMD>g/Unstaged/ norm vips<CR>', { silent = true, noremap = true })
+vim.keymap.set('n', '\\t', '<CMD>g/Untracked/ norm vips<CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '\\p', function()
   local bufnr = vim.api.nvim_get_current_buf()
   local filetype = vim.api.nvim_get_option_value('filetype', { buf = bufnr })

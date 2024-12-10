@@ -13,14 +13,6 @@ return {
     imap <silent> <C-l> <Plug>(copilot-dismiss)
     ]]
 
-      local function SuggestOneWord()
-        local suggestion = vim.fn['copilot#Accept']('')
-        local bar = vim.fn['copilot#TextQueuedForInsertion']()
-        return vim.fn.split(bar, [[[ .]\zs]])[1]
-      end
-
-      vim.keymap.set('i', '<M-=>', SuggestOneWord, { silent = true, expr = true, desc = 'Suggest one word from copilot' })
-
       vim.g.copilot_assume_mapped = true
       vim.g.copilot_filetypes = {
         ['javascript'] = true,
@@ -51,6 +43,7 @@ return {
         keymap = {
           accept = '<M-Tab>',
           accept_word = '<M-=>',
+          accept_line = '<M-+>',
           next = '<C-j>',
           previous = '<C-k>',
           dismiss = '<C-l>'

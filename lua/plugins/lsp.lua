@@ -52,6 +52,7 @@ return {
     require('mason').setup()
     require('mason-lspconfig').setup({
       ensure_installed = { 'ts_ls', 'eslint', 'lua_ls', 'dockerls', 'docker_compose_language_service', 'pyright', 'gopls' },
+      automatic_installation = true,
       handlers = {
         function(server_name)
           require('lspconfig')[server_name].setup({})
@@ -70,56 +71,11 @@ return {
           })
         end,
 
-        -- ts_ls = function()
-        --   local inlayHints = {
-        --     includeInlayParameterNameHints = 'all',
-        --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-        --     includeInlayFunctionParameterTypeHints = true,
-        --     includeInlayVariableTypeHints = true,
-        --     includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-        --     includeInlayPropertyDeclarationTypeHints = true,
-        --     includeInlayFunctionLikeReturnTypeHints = true,
-        --     includeInlayEnumMemberValueHints = true
-        --   }
-        --   require('lspconfig').ts_ls.setup {
-        --     settings = {
-        --       typescript = {
-        --         inlayHints = inlayHints
-        --       },
-        --       javascript = {
-        --         inlayHints = inlayHints
-        --       }
-        --     }
-        --   }
-        -- end,
 
         lua_ls = function()
-          require('lspconfig').lua_ls.setup({
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { 'vim' }
-                },
-                -- hint = { enable = true },
-                telemetry = { enable = false },
-                workspace = {
-                  library = {
-                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-                  }
-                },
-                format = {
-                  enable = true,
-                  defaultConfig = {
-                    indent_style = 'space',
-                    indent_size = '2',
-                    quote_style = 'single',
-                    trailing_table_separator = 'never'
-                  }
-                }
-              }
-            }
-          })
+          require('lspconfig').lua_ls.setup {
+            root_dir = require('lspconfig').util.root_pattern('init.lua', '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', 'selene.yml', '.git')
+          }
         end
 
       }
