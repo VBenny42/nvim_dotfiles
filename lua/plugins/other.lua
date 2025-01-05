@@ -1,6 +1,6 @@
 return {
   'rgroli/other.nvim',
-  enabled = false,
+  enabled = true,
   cmd = { 'Other', 'OtherSplit', 'OtherTabNew', 'OtherVSplit' },
   keys = { { '<leader>o', '<CMD>Other<CR>', noremap = true, silent = true } },
   opts = {
@@ -19,6 +19,24 @@ return {
         target = {
           {
             target = '/%1.c',
+            context = 'source'
+          }
+        }
+      },
+      {
+        pattern = '/(.*).go$',
+        target = {
+          {
+            target = '/%1_test.go',
+            context = 'test'
+          }
+        }
+      },
+      {
+        pattern = '/(.*)_test.go$',
+        target = {
+          {
+            target = '/%1.go',
             context = 'source'
           }
         }

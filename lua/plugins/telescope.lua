@@ -24,7 +24,17 @@ return {
               ['<c-d>'] = require('telescope.actions').delete_buffer
             }
           }
+        },
+        command_history = {
+          mappings = {
+            i = {
+              ['<c-e>'] = require('telescope.actions').edit_command_line
+            }
+          }
         }
+      },
+      extensions = {
+        fzf = {}
       }
     },
     keys = {

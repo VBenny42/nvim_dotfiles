@@ -3,7 +3,8 @@ return {
   version = '*',
   opts = {
     custom_textobjects = {
-      b = false
+      b = false,
+      x = { "```%S+%s()[^`]+()```" },
     }
   }
 }

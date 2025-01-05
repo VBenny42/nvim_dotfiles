@@ -28,7 +28,7 @@ return {
       yaml = { 'prettierd' },
       markdown = { 'deno_fmt' },
       graphql = { 'prettierd' },
-      python = { 'isort', 'black' },
+      python = { 'ruff_format' },
       latex = { 'latexindent' },
       tex = { 'latexindent' },
       c = { 'clang-format' },

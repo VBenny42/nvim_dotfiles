@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -7,7 +8,6 @@ return {
       'nvim-treesitter/nvim-treesitter-refactor',
       'nvim-treesitter/nvim-treesitter-context'
     },
-    -- event = 'BufReadPost',
     lazy = false,
     opts = {
       ensure_installed = { 'c', 'lua', 'javascript', 'typescript', 'vim', 'vimdoc', 'python', 'markdown', 'markdown_inline' },
@@ -28,7 +28,16 @@ return {
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
-        disable = { 'latex' }
+        disable = function(lang, buf)
+          if lang == 'latex' then
+            return true
+          end
+          local max_file_size = 100 * 1024 -- 100kb
+          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+          if ok and stats and stats.size > max_file_size then
+            return true
+          end
+        end
       },
       indent = { enable = true, disable = { 'python' } },
       incremental_selection = {

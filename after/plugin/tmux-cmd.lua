@@ -1,0 +1,18 @@
+-- local pattern = 'run.sh'
+--
+-- vim.api.nvim_create_autocmd('BufEnter', {
+--   group = vim.api.nvim_create_augroup('TmuxCmd', { clear = true }),
+--   pattern = pattern,
+--   callback = function()
+--     vim.cmd('norm ggi#!/bin/sh')
+--   end
+-- })
+--
+-- vim.api.nvim_create_autocmd('BufWritePost', {
+--   group = vim.api.nvim_create_augroup('TmuxCmd', { clear = false }),
+--   pattern = pattern,
+--   callback = function()
+--     vim.cmd('silent !chmod +x run.sh')
+--     vim.cmd('silent !tmux send-keys -t 2 sh run.sh Enter')
+--   end
+-- })

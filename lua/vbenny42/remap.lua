@@ -50,6 +50,9 @@ end
 -- vim.keymap.set('n', 'qo', '<cmd>copen<CR>', { desc = '[O]pen [Q]uickfix' })
 vim.keymap.set('n', 'qt', toggle_quickfix, { desc = '[T]oggle [Q]uickfix' })
 
+vim.keymap.set('n', '<M-j>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<M-k>', '<cmd>cprev<CR>zz')
+
 -- greatest remap ever
 -- vim.keymap.set({ 'n', 'v' }, '<leader>p', [["+p]], { desc = 'Paste from system clipboard' })
 vim.keymap.set('x', '<leader>P', [["_dP]])

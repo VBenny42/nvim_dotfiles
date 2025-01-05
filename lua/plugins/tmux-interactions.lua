@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
   'EvWilson/slimux.nvim',
+  enabled = true,
   keys = {
     {
       ',r',

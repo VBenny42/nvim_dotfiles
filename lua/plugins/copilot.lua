@@ -53,6 +53,7 @@ return {
           typescript = true,
           c = true,
           python = true,
+          markdown = true,
           lua = true,
           rust = true,
           sh = true,

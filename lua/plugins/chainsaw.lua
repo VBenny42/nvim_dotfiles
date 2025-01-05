@@ -22,18 +22,8 @@ return {
       desc = 'Remove all logs'
     }
   },
-  -- Add opts for C and Rust maybe? Only works for Python, JS and Lua by default
   opts = {
     marker = 'LOG:',
-    logStatements = {
-      variableLog = {
-        rust = 'println!("{} {}: {:?}", "%s", "%s", %s);',
-        go = 'fmt.Println("%s %s:", %s)'
-      },
-      messageLog = {
-        rust = 'println!("{} ", "%s");'
-      }
-    },
     visuals = {
       signHlgroup = ''
     }
