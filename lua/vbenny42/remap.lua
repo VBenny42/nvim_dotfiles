@@ -16,20 +16,20 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('n', '<leader>qq', '<cmd>wa | mksession! | qa<CR>', { desc = 'Save session and quit', silent = true })
 
 vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', silent = true })
-vim.keymap.set('n', ',d', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', silent = true })
+vim.keymap.set('n', '<M-d>', '<cmd>bd<CR>', { desc = '[B]uffer [D]elete', silent = true })
 
 vim.keymap.set('n', 'Q', '@qj', { desc = 'Replay macro q', silent = true, remap = true })
 vim.keymap.set('x', 'Q', ':norm @q<CR>', { desc = 'Replay macro q', silent = true, remap = true })
 
-vim.keymap.set('n', ',w', '<cmd>update<CR>', { desc = 'Write buffer' })
-vim.keymap.set('n', ',q', '<cmd>x<CR>', { desc = 'Write buffer and quit' })
-vim.keymap.set('n', ',Q', '<cmd>q!<CR>', { desc = 'Quit without saving' })
-vim.keymap.set('n', ',W', '<cmd>noautocmd update<CR>', { desc = 'Write buffer' })
+vim.keymap.set('n', '<M-w>', '<cmd>update<CR>', { desc = 'Write buffer' })
+vim.keymap.set('n', '<M-q>', '<cmd>x<CR>', { desc = 'Write buffer and quit' })
+vim.keymap.set('n', '<M-Q>', '<cmd>q!<CR>', { desc = 'Quit without saving' })
+vim.keymap.set('n', '<M-W>', '<cmd>noautocmd update<CR>', { desc = 'Write buffer' })
 
 -- Substitute with magic mode
-vim.keymap.set('n', ',s', ':s/\\v', { desc = 'Substitute' })
-vim.keymap.set('x', ',s', ':s/\\v', { desc = 'Substitute' })
-vim.keymap.set('n', ',S', ':%s/\\v', { desc = 'Substitute' })
+vim.keymap.set('n', '<M-s>', ':s/\\v', { desc = 'Substitute' })
+vim.keymap.set('x', '<M-s>', ':s/\\v', { desc = 'Substitute' })
+vim.keymap.set('n', '<M-S>', ':%s/\\v', { desc = 'Substitute' })
 
 local function toggle_quickfix()
   local qf_exists = false
@@ -89,7 +89,10 @@ nnoremap <silent> <M-]> :call search('^'. matchstr(getline('.'), '\(^\s*\)') .'\
 
 local filetypes = {
   -- 'TelescopePrompt',
-  'notify'
+  -- 'notify',
+  'snacks_notif',
+  'snacks_notif_history',
+  'oil'
   -- 'noice'
 }
 

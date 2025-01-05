@@ -4,7 +4,7 @@ return {
   enabled = true,
   keys = {
     {
-      ',r',
+      '<M-r>',
       function()
         local command = '\16'
         require('slimux').send(command)
@@ -12,7 +12,7 @@ return {
       desc = 'Rerun previous command in last tmux pane'
     },
     {
-      ',c',
+      '<M-c>',
       function()
         local command = vim.fn.input('Command to send: ')
         require('slimux').send(command)

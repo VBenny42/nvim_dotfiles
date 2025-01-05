@@ -1,6 +1,6 @@
 return {
   'rcarriga/nvim-notify',
-  enabled = true,
+  enabled = false,
   event = { 'BufReadPre', 'BufNewFile' },
   opts = {
     stages = 'static'

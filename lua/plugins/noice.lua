@@ -18,8 +18,8 @@ return {
       }
     },
     notify = {
-      replace = true,
-      merge = true
+      replace = false,
+      merge = false
     },
     lsp = {
       progress = {
