@@ -20,18 +20,18 @@ return {
           vim.keymap.set(mode, l, r, opts)
         end
 
-        -- Navigation
-        map('n', ']g', function()
-          if vim.wo.diff then return ']g' end
-          vim.schedule(function() gs.next_hunk() end)
-          return '<Ignore>'
-        end, { expr = true, desc = 'Go to next hunk' })
-
-        map('n', '[g', function()
-          if vim.wo.diff then return '[g' end
-          vim.schedule(function() gs.prev_hunk() end)
-          return '<Ignore>'
-        end, { expr = true, desc = 'Go to previous hunk' })
+        -- -- Navigation
+        -- map('n', ']g', function()
+        --   if vim.wo.diff then return ']g' end
+        --   vim.schedule(function() gs.next_hunk() end)
+        --   return '<Ignore>'
+        -- end, { expr = true, desc = 'Go to next hunk' })
+        --
+        -- map('n', '[g', function()
+        --   if vim.wo.diff then return '[g' end
+        --   vim.schedule(function() gs.prev_hunk() end)
+        --   return '<Ignore>'
+        -- end, { expr = true, desc = 'Go to previous hunk' })
 
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 
